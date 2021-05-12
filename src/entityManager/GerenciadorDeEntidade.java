@@ -22,11 +22,8 @@ public class GerenciadorDeEntidade<Entity> {
         
         // se der merda colocar o return
         public void inserir(Entity entity) {
-            System.out.println("PUTINHA");
             try {
-                System.out.println("PUTA");
                 em.getTransaction().begin();
-                System.out.println("PUTA");
                 em.persist(entity);
                 em.getTransaction().commit();
             } catch(Exception E) {
@@ -35,7 +32,38 @@ public class GerenciadorDeEntidade<Entity> {
             } finally {
                 em.close();
             }
-            
+        }
+        
+        public void atualiza(Entity entity) {
+            try {
+                em.getTransaction().begin();
+                //em.find(entity.getClass(), );
+                //if (a != null){
+                 //   a.setEndereco("Av. Colombo");
+                //}
+                // TESTAR
+                em.getTransaction().commit();
+            } catch(Exception E) {
+                em.getTransaction().rollback();
+                System.out.println(E);
+            } finally {
+                em.close();
+            }
+        }
+        
+        public void remove(Entity entity) {
+            try {
+                em.getTransaction().begin();
+                //r = em.find(r.getClass(), new Integer(1));
+                //if (r != null)
+                    //em.remove(r);
+                em.getTransaction().commit();
+            } catch(Exception E) {
+                em.getTransaction().rollback();
+                System.out.println(E);
+            } finally {
+                em.close();
+            }
         }
         /*
         // Inserindo uma pessoa
