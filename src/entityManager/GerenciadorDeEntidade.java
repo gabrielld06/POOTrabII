@@ -37,11 +37,6 @@ public class GerenciadorDeEntidade<Entity> {
         public void atualiza(Entity entity) {
             try {
                 em.getTransaction().begin();
-                //em.find(entity.getClass(), );
-                //if (a != null){
-                 //   a.setEndereco("Av. Colombo");
-                //}
-                // TESTAR
                 em.getTransaction().commit();
             } catch(Exception E) {
                 em.getTransaction().rollback();

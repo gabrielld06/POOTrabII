@@ -11,7 +11,7 @@ import javax.persistence.OneToOne;
 @Entity
 
 public class Paciente {
-    @Id 
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int IdPaciente;
     private String nome;

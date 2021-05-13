@@ -35,22 +35,21 @@ public class Trabalho {
 
     public static void main(String[] args) {
         Dados dados = new Dados();
-        Scanner leitura = new Scanner(System.in);
-        String opcaoUsuario;
-        
-        do {
-            menuEscolhaUsuario();
-            opcaoUsuario = leitura.nextLine();
-            TipoUsuario usuario = configurarUsuario(opcaoUsuario);
-            boolean continua;
-            if(usuario != null) {
-                do {
-                    continua = usuario.menu(dados);
-                } while(continua);
-            }
-        } while(!opcaoUsuario.equals("4"));
-
-        leitura.close();
+        try (Scanner leitura = new Scanner(System.in)) {
+            String opcaoUsuario;
+            
+            do {
+                menuEscolhaUsuario();
+                opcaoUsuario = leitura.nextLine();
+                TipoUsuario usuario = configurarUsuario(opcaoUsuario);
+                boolean continua;
+                if(usuario != null) {
+                    do {
+                        continua = usuario.menu(dados);
+                    } while(continua);
+                }
+            } while(!opcaoUsuario.equals("4"));
+        }
     }
     
 }
