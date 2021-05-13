@@ -23,14 +23,16 @@ public class GerenciadorDeEntidade<Entity> {
         EntityManager em = emf.createEntityManager();      
         
         // se der merda colocar o return
-        public void inserir(Entity entity) {
+        public int inserir(Entity entity) {
             try {
                 em.getTransaction().begin();
                 em.persist(entity);
                 em.getTransaction().commit();
+                return 1;
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
+                return 0;
             }
         }
         
@@ -65,13 +67,15 @@ public class GerenciadorDeEntidade<Entity> {
             return em.find(Paciente.class, idPaciente);
         }
         
-        public void atualizaPaciente() {
+        public int atualizaPaciente() {
             try {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
+                return 1;
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
+                return 0;
             }
         }
         /*
