@@ -2,6 +2,7 @@ package trabalho;
 
 import controleUsuario.TipoUsuario;
 import java.util.Scanner;
+import telas.selecionarUsuario;
 public class Trabalho {
     
     public static void menuEscolhaUsuario() {
@@ -34,7 +35,10 @@ public class Trabalho {
     
 
     public static void main(String[] args) {
-        Dados dados = new Dados();
+        //Dados dados = new Dados();
+        selecionarUsuario tela = new selecionarUsuario();
+        tela.setVisible(true);
+        /*
         try (Scanner leitura = new Scanner(System.in)) {
             String opcaoUsuario;
             
@@ -49,7 +53,7 @@ public class Trabalho {
                     } while(continua);
                 }
             } while(!opcaoUsuario.equals("4"));
-        }
+        }*/
     }
     
 }

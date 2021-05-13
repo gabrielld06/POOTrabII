@@ -5,6 +5,8 @@
  */
 package entityManager;
 
+import POJO.Paciente;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
@@ -29,8 +31,6 @@ public class GerenciadorDeEntidade<Entity> {
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
-            } finally {
-                em.close();
             }
         }
         
@@ -41,8 +41,6 @@ public class GerenciadorDeEntidade<Entity> {
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
-            } finally {
-                em.close();
             }
         }
         
@@ -56,8 +54,24 @@ public class GerenciadorDeEntidade<Entity> {
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
-            } finally {
-                em.close();
+            }
+        }
+        
+        public List<Paciente> getPacientes() {
+            return em.createQuery("SELECT a FROM Paciente a", Paciente.class).getResultList();
+        }
+        
+        public Paciente buscaPaciente(int idPaciente) {
+            return em.find(Paciente.class, idPaciente);
+        }
+        
+        public void atualizaPaciente() {
+            try {
+                em.getTransaction().begin();
+                em.getTransaction().commit();
+            } catch(Exception E) {
+                em.getTransaction().rollback();
+                System.out.println(E);
             }
         }
         /*

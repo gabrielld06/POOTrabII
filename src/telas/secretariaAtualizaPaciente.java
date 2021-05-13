@@ -19,10 +19,11 @@ import javax.persistence.Persistence;
  */
 public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     private Paciente paciente;
-    EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("trabalhoPU");
-    EntityManager entityManager = entityManagerFactory.createEntityManager();
+    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    //EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("trabalhoPU");
+    //EntityManager entityManager = entityManagerFactory.createEntityManager();
     //Paciente paciente = entityManager.find(Paciente.class, 1);
-    List<Paciente> results = entityManager.createQuery("SELECT a FROM Paciente a", Paciente.class).getResultList();
+    List<Paciente> results = gerenciador.getPacientes();
     /**
      * Creates new form secretariaForm
      */
@@ -272,16 +273,17 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         // abre na linha 23, se fazer isso aqui rodar pelo gerenciadorDeEntidade ta feito
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
-        Paciente pacienteAtualizar = entityManager.find(Paciente.class, idPaciente);
-        pacienteAtualizar.setNome(pacienteNomeTxt.getText());
+        Paciente pacienteAtualizar = gerenciador.buscaPaciente(idPaciente);
+        pacienteAtualizar.setNome(pacienteNomeTxt.getText());;
         pacienteAtualizar.setConvenio(pacienteConvenioTxt.getText());
         //pacienteAtualizar.setdata(pacienteDataNascimentoTxt.getText());
         pacienteAtualizar.setEndereco(pacienteEnderecoTxt.getText());
         pacienteAtualizar.setTelefone(pacienteTelefoneTxt.getText());
         pacienteAtualizar.setEmail(pacienteEmailTxt.getText());
-        entityManager.getTransaction().begin();
-        entityManager.getTransaction().commit();
-        entityManager.close();
+        gerenciador.atualizaPaciente();
+        pacienteComboBox.removeItemAt(index);
+        pacienteComboBox.insertItemAt(pacienteAtualizar.getNome(), index);
+        pacienteComboBox.setSelectedIndex(index);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
