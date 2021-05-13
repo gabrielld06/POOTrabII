@@ -7,10 +7,9 @@
     <class>POJO.Paciente</class>
     <class>POJO.Prontuario</class>
     <class>DateConverter.LocalDateConverter</class>
-    <class>controleUsuario.SelecionaUsuario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/sample"/>
-      <property name="javax.persistence.jdbc.user" value="gabrielld"/>
+      <property name="javax.persistence.jdbc.user" value="clinica"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
       <property name="javax.persistence.jdbc.password" value="12345"/>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>

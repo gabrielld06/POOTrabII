@@ -13,7 +13,7 @@ import javax.persistence.OneToOne;
 
 public class Consulta {
     @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int idConsulta;
     @Convert(converter = DateConverter.LocalDateConverter.class)
     private LocalDate data;

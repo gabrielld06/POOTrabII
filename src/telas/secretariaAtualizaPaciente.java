@@ -256,8 +256,8 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
 
         int index = pacienteComboBox.getSelectedIndex();
         pacienteNomeTxt.setText(results.get(index).getNome());
-       // pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
-        pacienteDataNascimentoTxt.setText(results.get(index).getDataNascimento().toString());
+        pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
+        //pacienteDataNascimentoTxt.setText(results.get(index).getDataNascimento().toString());
         pacienteEnderecoTxt.setText(results.get(index).getEndereco());
         pacienteTelefoneTxt.setText(results.get(index).getTelefone());
         pacienteEmailTxt.setText(results.get(index).getEmail());

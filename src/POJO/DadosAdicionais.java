@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 public class DadosAdicionais {
     @Id 
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int IdDadosAdicionais;
     private boolean fuma;
     private boolean bebe;

@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 
 public class Paciente {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int IdPaciente;
     private String nome;
     @Convert(converter = DateConverter.LocalDateConverter.class)
