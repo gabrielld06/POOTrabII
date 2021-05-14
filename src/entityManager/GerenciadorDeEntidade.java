@@ -36,7 +36,7 @@ public class GerenciadorDeEntidade<Entity> {
             }
         }
         
-        public void atualiza(Entity entity) {
+        public void atualiza() {
             try {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
@@ -46,16 +46,16 @@ public class GerenciadorDeEntidade<Entity> {
             }
         }
         
-        public void remove(Entity entity) {
+        public int remove(Entity entity) {
             try {
                 em.getTransaction().begin();
-                //r = em.find(r.getClass(), new Integer(1));
-                //if (r != null)
-                    //em.remove(r);
+                em.remove(entity);
                 em.getTransaction().commit();
+                return 1;
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
+                return 0;
             }
         }
         

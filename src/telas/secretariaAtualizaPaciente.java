@@ -6,13 +6,14 @@
 package telas;
 
 import POJO.Paciente;
-import POJO.Paciente_;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,14 +22,18 @@ import javax.persistence.Persistence;
 public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    //EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("trabalhoPU");
-    //EntityManager entityManager = entityManagerFactory.createEntityManager();
-    //Paciente paciente = entityManager.find(Paciente.class, 1);
     List<Paciente> results = gerenciador.getPacientes();
+    private JFrame telaAnterior;
     /**
      * Creates new form secretariaForm
      */
-    public secretariaAtualizaPaciente() {
+    public secretariaAtualizaPaciente(JFrame tela) {
+        initComponents();
+        telaAnterior = tela;
+        setLocationRelativeTo(null);
+    }
+
+    private secretariaAtualizaPaciente() {
         initComponents();
     }
 
@@ -55,7 +60,7 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         statusText = new javax.swing.JLabel();
         pacienteConvernioCBox = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
@@ -134,7 +139,12 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        cancelButton.setText("Cancelar");
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseClicked(evt);
+            }
+        });
 
         statusText.setText("Aguardando...");
 
@@ -150,7 +160,7 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
                 .addGap(96, 96, 96)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(cancelButton)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(11, Short.MAX_VALUE)
@@ -217,7 +227,7 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancelButton))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusText)
@@ -238,6 +248,11 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Atualizar Paciente", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void pacienteEnderecoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteEnderecoTxtActionPerformed
@@ -274,11 +289,6 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteNomeTxtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Ta atualizando na DB, mas não consegui passar pro GerenciadorDeEntidade.atualiza()
-        // ;-;
-        // Só atualiza uma vez, dps tem que fechar a janela secretariaAtualizaPaciente e abrir dnv
-        // pq aqui ele da entity.Manager.close() e o entityManager só "abre" dnv quando a janela
-        // abre na linha 23, se fazer isso aqui rodar pelo gerenciadorDeEntidade ta feito
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
         Paciente pacienteAtualizar = gerenciador.buscaPaciente(idPaciente);
@@ -300,6 +310,12 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
             statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        // TODO add your handling code here:
+        telaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -338,8 +354,8 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

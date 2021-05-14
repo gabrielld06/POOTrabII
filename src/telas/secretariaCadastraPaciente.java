@@ -8,6 +8,7 @@ package telas;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,10 +17,17 @@ import java.awt.Color;
 public class secretariaCadastraPaciente extends javax.swing.JFrame {
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    private JFrame telaAnterior;
     /**
      * Creates new form secretariaCadastraPaciente
      */
-    public secretariaCadastraPaciente() {
+    public secretariaCadastraPaciente(JFrame tela) {
+        initComponents();
+        telaAnterior = tela;
+        setLocationRelativeTo(null);
+    }
+
+    private secretariaCadastraPaciente() {
         initComponents();
     }
 
@@ -44,7 +52,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
         pacienteNomeTxt = new javax.swing.JTextField();
         pacienteEnderecoTxt = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         pacienteConvenioCBox = new javax.swing.JComboBox<>();
         statusText = new javax.swing.JLabel();
@@ -106,7 +114,12 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        cancelButton.setText("Cancelar");
+        cancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancelButtonMouseClicked(evt);
+            }
+        });
 
         jLabel8.setText("Digite as informações para cadastrar o paciente");
 
@@ -150,7 +163,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
                         .addGap(99, 99, 99)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2))
+                        .addComponent(cancelButton))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel9)
@@ -190,7 +203,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(cancelButton))
                 .addGap(2, 2, 2)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusText)
@@ -232,13 +245,19 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
         novoPaciente.setEmail(pacienteEmailTxt.getText());
         int status = gerenciador.inserir(novoPaciente);
         if (status == 1){
-            statusText.setText("Paciente atualizado com sucesso!");
+            statusText.setText("Paciente cadastrado com sucesso!");
             statusText.setForeground(Color.decode("#006400"));
         }else{
             statusText.setText("Ocorreu um erro ao atualizar o paciente.");
             statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancelButtonMouseClicked
+        // TODO add your handling code here:
+        telaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -276,8 +295,8 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

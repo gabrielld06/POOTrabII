@@ -20,6 +20,7 @@ public class secretariaMenu extends javax.swing.JFrame {
     public secretariaMenu(JFrame tela) {
         initComponents();
         telaAnterior = tela;
+        setLocationRelativeTo(null);
     }
 
     private secretariaMenu() {
@@ -35,36 +36,24 @@ public class secretariaMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialog1 = new javax.swing.JDialog();
-        jDialog2 = new javax.swing.JDialog();
         menuText = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
-
-        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
-        jDialog1.getContentPane().setLayout(jDialog1Layout);
-        jDialog1Layout.setHorizontalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog1Layout.setVerticalGroup(
-            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jDialog2Layout = new javax.swing.GroupLayout(jDialog2.getContentPane());
-        jDialog2.getContentPane().setLayout(jDialog2Layout);
-        jDialog2Layout.setHorizontalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jDialog2Layout.setVerticalGroup(
-            jDialog2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        cadastrarPacienteButton = new javax.swing.JButton();
+        atualizaPacienteButton = new javax.swing.JButton();
+        removePacienteButton = new javax.swing.JButton();
+        cadastrarConsultaButton = new javax.swing.JButton();
+        atualizaConsultaButton = new javax.swing.JButton();
+        removeConsultaButton = new javax.swing.JButton();
+        gerarRelatorioConsultaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        menuText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuText.setText("Menu secretaria");
+        menuText.setPreferredSize(new java.awt.Dimension(125, 25));
+        getContentPane().add(menuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
 
         exitButton.setText("Sair");
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -72,29 +61,73 @@ public class secretariaMenu extends javax.swing.JFrame {
                 exitButtonMouseClicked(evt);
             }
         });
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 272, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(97, 97, 97)
-                .addComponent(menuText)
-                .addContainerGap(226, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(53, 53, 53))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(menuText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(28, 28, 28))
-        );
+        cadastrarPacienteButton.setText("Cadastrar Paciente");
+        cadastrarPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
+        cadastrarPacienteButton.setPreferredSize(new java.awt.Dimension(130, 22));
+        cadastrarPacienteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastrarPacienteButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(cadastrarPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 103, -1, -1));
+
+        atualizaPacienteButton.setText("Atualizar Paciente");
+        atualizaPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
+        atualizaPacienteButton.setPreferredSize(new java.awt.Dimension(130, 22));
+        atualizaPacienteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaPacienteButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(atualizaPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 143, -1, -1));
+
+        removePacienteButton.setText("Remover Paciente");
+        removePacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
+        removePacienteButton.setPreferredSize(new java.awt.Dimension(130, 22));
+        removePacienteButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removePacienteButtonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(removePacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 183, -1, -1));
+
+        cadastrarConsultaButton.setText("Cadastrar Consulta");
+        cadastrarConsultaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarConsultaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cadastrarConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 103, -1, -1));
+
+        atualizaConsultaButton.setText("Atualizar Consulta");
+        atualizaConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
+        atualizaConsultaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizaConsultaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(atualizaConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 143, -1, -1));
+
+        removeConsultaButton.setText("Remover Consulta");
+        removeConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
+        removeConsultaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeConsultaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(removeConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 183, -1, -1));
+
+        gerarRelatorioConsultaButton.setText("Gerar Relatório de Consulta");
+        gerarRelatorioConsultaButton.setMaximumSize(new java.awt.Dimension(170, 22));
+        gerarRelatorioConsultaButton.setPreferredSize(new java.awt.Dimension(175, 22));
+        gerarRelatorioConsultaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarRelatorioConsultaButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 223, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -104,6 +137,55 @@ public class secretariaMenu extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void cadastrarPacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarPacienteButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaCadastraPaciente telaCadastro = new secretariaCadastraPaciente(this);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_cadastrarPacienteButtonMouseClicked
+
+    private void removePacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removePacienteButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaRemovePaciente telaRemove = new secretariaRemovePaciente(this);
+        telaRemove.setVisible(true);
+    }//GEN-LAST:event_removePacienteButtonMouseClicked
+
+    private void atualizaPacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaPacienteButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaAtualizaPaciente telaAtualiza = new secretariaAtualizaPaciente(this);
+        telaAtualiza.setVisible(true);
+    }//GEN-LAST:event_atualizaPacienteButtonMouseClicked
+
+    private void cadastrarConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarConsultaButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaCadastraConsulta tela = new secretariaCadastraConsulta(this);
+        tela.setVisible(true);
+    }//GEN-LAST:event_cadastrarConsultaButtonActionPerformed
+
+    private void atualizaConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizaConsultaButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaAtualizaConsulta tela = new secretariaAtualizaConsulta(this);
+        tela.setVisible(true);
+    }//GEN-LAST:event_atualizaConsultaButtonActionPerformed
+
+    private void removeConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConsultaButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaRemoveConsulta tela = new secretariaRemoveConsulta(this);
+        tela.setVisible(true);
+    }//GEN-LAST:event_removeConsultaButtonActionPerformed
+
+    private void gerarRelatorioConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioConsultaButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        secretariaGerarRelatorioConsulta tela = new secretariaGerarRelatorioConsulta(this);
+        tela.setVisible(true);
+    }//GEN-LAST:event_gerarRelatorioConsultaButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -141,9 +223,14 @@ public class secretariaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atualizaConsultaButton;
+    private javax.swing.JButton atualizaPacienteButton;
+    private javax.swing.JButton cadastrarConsultaButton;
+    private javax.swing.JButton cadastrarPacienteButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JDialog jDialog1;
-    private javax.swing.JDialog jDialog2;
+    private javax.swing.JButton gerarRelatorioConsultaButton;
     private javax.swing.JLabel menuText;
+    private javax.swing.JButton removeConsultaButton;
+    private javax.swing.JButton removePacienteButton;
     // End of variables declaration//GEN-END:variables
 }

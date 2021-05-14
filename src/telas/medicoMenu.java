@@ -21,6 +21,7 @@ public class medicoMenu extends javax.swing.JFrame {
     public medicoMenu(JFrame tela) {
         initComponents();
         telaAnterior = tela;
+        setLocationRelativeTo(null);
     }
     
     public medicoMenu() {
@@ -36,17 +37,83 @@ public class medicoMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        menuText = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
+        cadastrarButton = new javax.swing.JButton();
+        atualizaButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
+        menuText1 = new javax.swing.JLabel();
+        cadastrarProntuarioButton = new javax.swing.JButton();
+        atualizarProntuarioButton = new javax.swing.JButton();
+        removeProntuarioButton = new javax.swing.JButton();
+        gerarRelatorioMedicoButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        menuText.setText("Menu Medico");
+        setResizable(false);
 
         exitButton.setText("Sair");
-        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
+        cadastrarButton.setText("Cadastrar Dados Adicionais");
+        cadastrarButton.setPreferredSize(new java.awt.Dimension(180, 22));
+        cadastrarButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                exitButtonMouseClicked(evt);
+                cadastrarButtonMouseClicked(evt);
+            }
+        });
+
+        atualizaButton.setText("Atualizar Dados Adicionais");
+        atualizaButton.setPreferredSize(new java.awt.Dimension(180, 22));
+        atualizaButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizaButtonMouseClicked(evt);
+            }
+        });
+
+        removeButton.setText("Remover Dados Adicionais");
+        removeButton.setPreferredSize(new java.awt.Dimension(180, 22));
+        removeButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                removeButtonMouseClicked(evt);
+            }
+        });
+
+        menuText1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menuText1.setText("Menu médico");
+        menuText1.setPreferredSize(new java.awt.Dimension(110, 25));
+
+        cadastrarProntuarioButton.setText("Cadastrar Prontuário");
+        cadastrarProntuarioButton.setPreferredSize(new java.awt.Dimension(140, 22));
+        cadastrarProntuarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarProntuarioButtonActionPerformed(evt);
+            }
+        });
+
+        atualizarProntuarioButton.setText("Atualizar Prontuário");
+        atualizarProntuarioButton.setPreferredSize(new java.awt.Dimension(140, 22));
+        atualizarProntuarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atualizarProntuarioButtonActionPerformed(evt);
+            }
+        });
+
+        removeProntuarioButton.setText("Remover Prontuário");
+        removeProntuarioButton.setPreferredSize(new java.awt.Dimension(140, 22));
+        removeProntuarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeProntuarioButtonActionPerformed(evt);
+            }
+        });
+
+        gerarRelatorioMedicoButton.setText("Gerar Relatórios Médicos");
+        gerarRelatorioMedicoButton.setPreferredSize(new java.awt.Dimension(170, 22));
+        gerarRelatorioMedicoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarRelatorioMedicoButtonActionPerformed(evt);
             }
         });
 
@@ -55,32 +122,118 @@ public class medicoMenu extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(menuText)
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(46, 46, 46))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(exitButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(removeProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(atualizaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(atualizarProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(cadastrarProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(195, 195, 195)
+                                .addComponent(menuText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 74, Short.MAX_VALUE)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(165, 165, 165)
+                .addComponent(gerarRelatorioMedicoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addComponent(menuText)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(menuText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cadastrarButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastrarProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(atualizaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizarProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(removeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeProntuarioButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(gerarRelatorioMedicoButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
                 .addComponent(exitButton)
-                .addGap(33, 33, 33))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+    private void cadastrarButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoCadastraDadosAdicionais telaCadastro = new medicoCadastraDadosAdicionais(this);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_cadastrarButtonMouseClicked
+
+    private void atualizaButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoAtualizaDadosAdicionais telaAtualiza = new medicoAtualizaDadosAdicionais(this);
+        telaAtualiza.setVisible(true);
+    }//GEN-LAST:event_atualizaButtonMouseClicked
+
+    private void removeButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeButtonMouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoRemoveDadosAdicionais telaRemove = new medicoRemoveDadosAdicionais(this);
+        telaRemove.setVisible(true);
+    }//GEN-LAST:event_removeButtonMouseClicked
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
         telaAnterior.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_exitButtonMouseClicked
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void cadastrarProntuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarProntuarioButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoCadastraProntuario telaCadastro = new medicoCadastraProntuario(this);
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_cadastrarProntuarioButtonActionPerformed
+
+    private void atualizarProntuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarProntuarioButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoAtualizaProntuario telaAtualiza = new medicoAtualizaProntuario(this);
+        telaAtualiza.setVisible(true);
+    }//GEN-LAST:event_atualizarProntuarioButtonActionPerformed
+
+    private void removeProntuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeProntuarioButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoRemoveProntuario telaRemove = new medicoRemoveProntuario(this);
+        telaRemove.setVisible(true);
+    }//GEN-LAST:event_removeProntuarioButtonActionPerformed
+
+    private void gerarRelatorioMedicoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioMedicoButtonActionPerformed
+        // TODO add your handling code here:
+        this.setVisible(false);
+        medicoGerarRelatorioMedico telaRelatorio = new medicoGerarRelatorioMedico(this);
+        telaRelatorio.setVisible(true);
+    }//GEN-LAST:event_gerarRelatorioMedicoButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +271,14 @@ public class medicoMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton atualizaButton;
+    private javax.swing.JButton atualizarProntuarioButton;
+    private javax.swing.JButton cadastrarButton;
+    private javax.swing.JButton cadastrarProntuarioButton;
     private javax.swing.JButton exitButton;
-    private javax.swing.JLabel menuText;
+    private javax.swing.JButton gerarRelatorioMedicoButton;
+    private javax.swing.JLabel menuText1;
+    private javax.swing.JButton removeButton;
+    private javax.swing.JButton removeProntuarioButton;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,8 @@
  */
 package telas;
 
+import java.util.Arrays;
+
 /**
  *
  * @author Gabriel
@@ -16,6 +18,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
      */
     public selecionarUsuario() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
