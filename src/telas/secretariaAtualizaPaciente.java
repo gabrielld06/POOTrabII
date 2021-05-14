@@ -8,6 +8,7 @@ package telas;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -269,7 +270,6 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteEmailTxtActionPerformed
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
-
         int index = pacienteComboBox.getSelectedIndex();
         pacienteNomeTxt.setText(results.get(index).getNome());
         pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
@@ -290,25 +290,29 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteNomeTxtActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente pacienteAtualizar = gerenciador.buscaPaciente(idPaciente);
-        pacienteAtualizar.setNome(pacienteNomeTxt.getText());;
-        pacienteAtualizar.setConvenio(pacienteConvernioCBox.getSelectedItem().toString());
-        //pacienteAtualizar.setdata(pacienteDataNascimentoTxt.getText());
-        pacienteAtualizar.setEndereco(pacienteEnderecoTxt.getText());
-        pacienteAtualizar.setTelefone(pacienteTelefoneTxt.getText());
-        pacienteAtualizar.setEmail(pacienteEmailTxt.getText());
-        int status = gerenciador.atualizaPaciente();
-        if (status == 1){
-            pacienteComboBox.removeItemAt(index);
-            pacienteComboBox.insertItemAt(pacienteAtualizar.getNome(), index);
-            pacienteComboBox.setSelectedIndex(index);
-            statusText.setText("Paciente atualizado com sucesso!");
-            statusText.setForeground(Color.decode("#006400"));
-        }else{
-            statusText.setText("Ocorreu um erro ao atualizar o paciente.");
-            statusText.setForeground(Color.red);
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente pacienteAtualizar = gerenciador.buscaPaciente(idPaciente);
+            pacienteAtualizar.setNome(pacienteNomeTxt.getText());;
+            pacienteAtualizar.setConvenio(pacienteConvernioCBox.getSelectedItem().toString());
+            pacienteAtualizar.setDataNascimento(LocalDate.parse(pacienteDataNascimentoTxt.getText()));
+            pacienteAtualizar.setEndereco(pacienteEnderecoTxt.getText());
+            pacienteAtualizar.setTelefone(pacienteTelefoneTxt.getText());
+            pacienteAtualizar.setEmail(pacienteEmailTxt.getText());
+            int status = gerenciador.atualizaPaciente();
+            if (status == 1){
+                pacienteComboBox.removeItemAt(index);
+                pacienteComboBox.insertItemAt(pacienteAtualizar.getNome(), index);
+                pacienteComboBox.setSelectedIndex(index);
+                statusText.setText("Paciente atualizado com sucesso!");
+                statusText.setForeground(Color.decode("#006400"));
+            }else{
+                statusText.setText("Ocorreu um erro ao atualizar o paciente.");
+                statusText.setForeground(Color.red);
+            } 
+        } catch(Exception e) {
+            JOptionPane.showInputDialog("Formato de data incorreto");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

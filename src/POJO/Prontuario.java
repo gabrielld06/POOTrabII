@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 
 public class Prontuario {
     @Id 
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int IdProntuario;
     private String sintomas;
     private String diagnosticoDoenca;

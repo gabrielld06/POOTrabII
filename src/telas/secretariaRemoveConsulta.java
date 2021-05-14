@@ -5,7 +5,13 @@
  */
 package telas;
 
+import POJO.Consulta;
+import POJO.Paciente;
+import entityManager.GerenciadorDeEntidade;
+import java.awt.Color;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,6 +19,8 @@ import javax.swing.JFrame;
  */
 public class secretariaRemoveConsulta extends javax.swing.JFrame {
     private JFrame telaAnterior;
+    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    List<Paciente> results = gerenciador.buscaPacienteConsultas();
     /**
      * Creates new form secretariaRemoveConsulta
      */
@@ -35,9 +43,57 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        statusText = new javax.swing.JLabel();
+        pacienteComboBox = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        confirmaButton = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
         exitButton = new javax.swing.JButton();
+        medicoTextLbl = new javax.swing.JLabel();
+        dataTextLbl = new javax.swing.JLabel();
+        horarioTextLbl = new javax.swing.JLabel();
+        tipoTextLbl = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        statusText.setText("Aguardando...");
+
+        pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pacienteComboBoxItemStateChanged(evt);
+            }
+        });
+
+        jLabel9.setText("Status:");
+
+        jLabel1.setText("Paciente");
+
+        jLabel3.setText("Medico");
+
+        confirmaButton.setText("Confirmar");
+        confirmaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmaButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Data:");
+
+        jLabel5.setText("Horario");
+
+        jLabel8.setText("Digite as informações para atualizar a Consulta");
+
+        jLabel6.setText("Tipo");
 
         exitButton.setText("Cancelar");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,25 +102,144 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
             }
         });
 
+        medicoTextLbl.setText("medico");
+
+        dataTextLbl.setText("data");
+
+        horarioTextLbl.setText("horario");
+
+        tipoTextLbl.setText("tipo");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(286, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(38, 38, 38))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(statusText)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(confirmaButton)
+                                .addGap(18, 18, 18)
+                                .addComponent(exitButton))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(medicoTextLbl)
+                                        .addComponent(dataTextLbl)
+                                        .addComponent(horarioTextLbl)
+                                        .addComponent(tipoTextLbl))
+                                    .addGap(59, 59, 59))))
+                        .addGap(84, 84, 84))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(43, 43, 43)
+                .addComponent(jLabel8)
+                .addGap(0, 30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(19, 19, 19))
+                .addContainerGap(59, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(40, 40, 40))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(medicoTextLbl)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(dataTextLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(horarioTextLbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(tipoTextLbl))
+                .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmaButton)
+                    .addComponent(exitButton))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(statusText))
+                .addGap(8, 8, 8))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        results.forEach(e -> {
+            pacienteComboBox.addItem(e.getNome());
+        });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Atualizar Consulta", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
+        // TODO add your handling code here:
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            medicoTextLbl.setText(results.get(index).getConsulta().getMedico());
+            dataTextLbl.setText(results.get(index).getConsulta().getData().toString());
+            horarioTextLbl.setText(results.get(index).getConsulta().getHorario());
+            tipoTextLbl.setText(results.get(index).getConsulta().getTipo());
+            statusText.setText("Aguardando...");
+            statusText.setForeground(Color.black);
+        } catch(Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_pacienteComboBoxItemStateChanged
+
+    private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
+        int index = pacienteComboBox.getSelectedIndex();
+        Consulta consulta = gerenciador.buscaConsulta(results.get(index).getConsulta().getIdConsulta());
+        results.get(index).setConsulta(null);
+        int status = gerenciador.remove(consulta);
+        if (status == 1){
+            statusText.setText("Consulta removida com sucesso!");
+            statusText.setForeground(Color.decode("#006400"));
+            pacienteComboBox.removeItemAt(index);
+            results = gerenciador.buscaPacienteConsultas();
+            if (results.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhuma consulta cadastrada", "Remover consulta", JOptionPane.ERROR_MESSAGE);
+                telaAnterior.setVisible(true);
+                this.dispose();
+            }
+        }else{
+            statusText.setText("Erro ao remover consulta!");
+            statusText.setForeground(Color.decode("#006400"));
+        }
+    }//GEN-LAST:event_confirmaButtonActionPerformed
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         // TODO add your handling code here:
@@ -108,6 +283,20 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton confirmaButton;
+    private javax.swing.JLabel dataTextLbl;
     private javax.swing.JButton exitButton;
+    private javax.swing.JLabel horarioTextLbl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel medicoTextLbl;
+    private javax.swing.JComboBox<String> pacienteComboBox;
+    private javax.swing.JLabel statusText;
+    private javax.swing.JLabel tipoTextLbl;
     // End of variables declaration//GEN-END:variables
 }

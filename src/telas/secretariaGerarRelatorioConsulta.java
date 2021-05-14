@@ -5,6 +5,9 @@
  */
 package telas;
 
+import POJO.Consulta;
+import entityManager.GerenciadorDeEntidade;
+import java.util.List;
 import javax.swing.JFrame;
 
 /**
@@ -13,6 +16,7 @@ import javax.swing.JFrame;
  */
 public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
     private JFrame telaAnterior;
+    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     /**
      * Creates new form secretariaGerarRelatorioConsulta
      */
@@ -36,6 +40,12 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         exitButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        telefoneCheckBox = new javax.swing.JCheckBox();
+        emailCheckBox = new javax.swing.JCheckBox();
+        gerarRelatorioButton = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        campoConsultas = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,20 +56,71 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Gerar Relatorio de consultas:");
+
+        telefoneCheckBox.setText("Telefone");
+        telefoneCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                telefoneCheckBoxActionPerformed(evt);
+            }
+        });
+
+        emailCheckBox.setText("Email");
+
+        gerarRelatorioButton.setText("Gerar Relatorio");
+        gerarRelatorioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerarRelatorioButtonActionPerformed(evt);
+            }
+        });
+
+        campoConsultas.setColumns(20);
+        campoConsultas.setRows(5);
+        jScrollPane1.setViewportView(campoConsultas);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(296, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton)
                 .addGap(28, 28, 28))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(emailCheckBox)
+                    .addComponent(telefoneCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(gerarRelatorioButton)
+                .addGap(63, 63, 63))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
-                .addComponent(exitButton)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(telefoneCheckBox)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emailCheckBox))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(gerarRelatorioButton)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 99, Short.MAX_VALUE)
+                        .addComponent(exitButton))
+                    .addComponent(jScrollPane1))
                 .addGap(23, 23, 23))
         );
 
@@ -71,6 +132,27 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void telefoneCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_telefoneCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_telefoneCheckBoxActionPerformed
+
+    private void gerarRelatorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioButtonActionPerformed
+        // TODO add your handling code here:
+        String str = "";
+        if(telefoneCheckBox.isSelected()) {
+            str += "a.paciente.telefone != '' AND ";
+        }
+        if(emailCheckBox.isSelected()) {
+            str += "a.paciente.email != '' AND ";
+        }
+        String txt = "";
+        List<Consulta> results = gerenciador.buscaConsultasAmanha(str);
+        for(int i = 0; i < results.size();i++) {
+            txt += results.get(i).getPaciente().getNome() + "\n";
+        }
+        campoConsultas.setText(txt);
+    }//GEN-LAST:event_gerarRelatorioButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -108,6 +190,12 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea campoConsultas;
+    private javax.swing.JCheckBox emailCheckBox;
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton gerarRelatorioButton;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox telefoneCheckBox;
     // End of variables declaration//GEN-END:variables
 }

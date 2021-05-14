@@ -5,7 +5,9 @@
  */
 package entityManager;
 
+import POJO.Consulta;
 import POJO.Paciente;
+import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -36,13 +38,15 @@ public class GerenciadorDeEntidade<Entity> {
             }
         }
         
-        public void atualiza() {
+        public int atualiza() {
             try {
                 em.getTransaction().begin();
                 em.getTransaction().commit();
+                return 1;
             } catch(Exception E) {
                 em.getTransaction().rollback();
                 System.out.println(E);
+                return 0;
             }
         }
         
@@ -65,6 +69,19 @@ public class GerenciadorDeEntidade<Entity> {
         
         public Paciente buscaPaciente(int idPaciente) {
             return em.find(Paciente.class, idPaciente);
+        }
+        public List<Paciente> buscaPacienteConsultas() {
+            return em.createQuery("SELECT a FROM Paciente a WHERE a.consulta IS NOT NULL", Paciente.class).getResultList();
+        }
+                
+        public List<Consulta> buscaConsultasAmanha(String str) {
+            return em.createQuery("SELECT a FROM Consulta a WHERE " + str + "a.data = {d '" 
+                    + LocalDate.now().plusDays(1).toString() 
+                    + "'}", Consulta.class).getResultList();
+        }
+        
+        public Consulta buscaConsulta(int id) {
+            return em.createQuery("SELECT a FROM Consulta a WHERE a.idConsulta = :id", Consulta.class).setParameter("id", id).getSingleResult();
         }
         
         public int atualizaPaciente() {

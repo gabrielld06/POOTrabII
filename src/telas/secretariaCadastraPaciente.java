@@ -8,7 +8,9 @@ package telas;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.time.LocalDate;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -74,7 +76,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
             }
         });
 
-        pacienteDataNascimentoTxt.setText("nascimento");
+        pacienteDataNascimentoTxt.setText("aaaa-mm-dd");
         pacienteDataNascimentoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteDataNascimentoTxtActionPerformed(evt);
@@ -236,20 +238,24 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Paciente novoPaciente = new Paciente();
-        novoPaciente.setNome(pacienteNomeTxt.getText());
-        novoPaciente.setNome(pacienteNomeTxt.getText());;
-        novoPaciente.setConvenio(pacienteConvenioCBox.getSelectedItem().toString());
-        //pacienteAtualizar.setdata(pacienteDataNascimentoTxt.getText());
-        novoPaciente.setEndereco(pacienteEnderecoTxt.getText());
-        novoPaciente.setTelefone(pacienteTelefoneTxt.getText());
-        novoPaciente.setEmail(pacienteEmailTxt.getText());
-        int status = gerenciador.inserir(novoPaciente);
-        if (status == 1){
-            statusText.setText("Paciente cadastrado com sucesso!");
-            statusText.setForeground(Color.decode("#006400"));
-        }else{
-            statusText.setText("Ocorreu um erro ao atualizar o paciente.");
-            statusText.setForeground(Color.red);
+        try {
+            novoPaciente.setNome(pacienteNomeTxt.getText());
+            novoPaciente.setNome(pacienteNomeTxt.getText());;
+            novoPaciente.setConvenio(pacienteConvenioCBox.getSelectedItem().toString());
+            novoPaciente.setDataNascimento(LocalDate.parse(pacienteDataNascimentoTxt.getText()));
+            novoPaciente.setEndereco(pacienteEnderecoTxt.getText());
+            novoPaciente.setTelefone(pacienteTelefoneTxt.getText());
+            novoPaciente.setEmail(pacienteEmailTxt.getText());
+            int status = gerenciador.inserir(novoPaciente);
+            if (status == 1){
+                statusText.setText("Paciente cadastrado com sucesso!");
+                statusText.setForeground(Color.decode("#006400"));
+            }else{
+                statusText.setText("Ocorreu um erro ao cadastrar o paciente.");
+                statusText.setForeground(Color.red);
+            }
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Formato de data incorreto");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
