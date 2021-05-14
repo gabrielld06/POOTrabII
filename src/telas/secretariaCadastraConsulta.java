@@ -36,6 +36,21 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         exitButton = new javax.swing.JButton();
+        pacienteEnderecoTxt = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        pacienteConvenioCBox = new javax.swing.JComboBox<>();
+        statusText = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        pacienteTelefoneTxt = new javax.swing.JTextField();
+        pacienteEmailTxt = new javax.swing.JTextField();
+        pacienteDataNascimentoTxt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        pacienteComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,21 +61,141 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
             }
         });
 
+        pacienteEnderecoTxt.setText("Endereço");
+        pacienteEnderecoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacienteEnderecoTxtActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Digite as informações para marcar a Consulta");
+
+        pacienteConvenioCBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Particular", "Plano de saúde" }));
+
+        statusText.setText("Aguardando...");
+
+        jLabel9.setText("Status:");
+
+        pacienteTelefoneTxt.setText("telefone");
+        pacienteTelefoneTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacienteTelefoneTxtActionPerformed(evt);
+            }
+        });
+
+        pacienteEmailTxt.setText("email");
+        pacienteEmailTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacienteEmailTxtActionPerformed(evt);
+            }
+        });
+
+        pacienteDataNascimentoTxt.setText("nascimento");
+        pacienteDataNascimentoTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacienteDataNascimentoTxtActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Convenio:");
+
+        jLabel4.setText("Data de nascimento:");
+
+        jLabel5.setText("Telefone:");
+
+        jLabel6.setText("Endereço:");
+
+        jLabel7.setText("Email:");
+
+        pacienteComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pacienteEnderecoTxt)
+                            .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pacienteTelefoneTxt)
+                            .addComponent(pacienteEmailTxt)
+                            .addComponent(pacienteConvenioCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(statusText))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(93, 93, 93)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(exitButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(285, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(39, 39, 39))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(140, 140, 140))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(259, Short.MAX_VALUE)
-                .addComponent(exitButton)
-                .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(pacienteConvenioCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pacienteTelefoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pacienteEnderecoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pacienteEmailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(exitButton))
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(statusText)
+                    .addComponent(jLabel9))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -71,6 +206,43 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void pacienteEnderecoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteEnderecoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacienteEnderecoTxtActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /*Paciente novoPaciente = new Paciente();
+        novoPaciente.setNome(pacienteNomeTxt.getText());
+        novoPaciente.setNome(pacienteNomeTxt.getText());;
+        novoPaciente.setConvenio(pacienteConvenioCBox.getSelectedItem().toString());
+        //pacienteAtualizar.setdata(pacienteDataNascimentoTxt.getText());
+        novoPaciente.setEndereco(pacienteEnderecoTxt.getText());
+        novoPaciente.setTelefone(pacienteTelefoneTxt.getText());
+        novoPaciente.setEmail(pacienteEmailTxt.getText());
+        int status = gerenciador.inserir(novoPaciente);
+        if (status == 1){
+            statusText.setText("Paciente cadastrado com sucesso!");
+            statusText.setForeground(Color.decode("#006400"));
+        }else{
+            statusText.setText("Ocorreu um erro ao atualizar o paciente.");
+            statusText.setForeground(Color.red);
+        }
+        */
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void pacienteTelefoneTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteTelefoneTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacienteTelefoneTxtActionPerformed
+
+    private void pacienteEmailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteEmailTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacienteEmailTxtActionPerformed
+
+    private void pacienteDataNascimentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteDataNascimentoTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacienteDataNascimentoTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -109,5 +281,20 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JComboBox<String> pacienteComboBox;
+    private javax.swing.JComboBox<String> pacienteConvenioCBox;
+    private javax.swing.JTextField pacienteDataNascimentoTxt;
+    private javax.swing.JTextField pacienteEmailTxt;
+    private javax.swing.JTextField pacienteEnderecoTxt;
+    private javax.swing.JTextField pacienteTelefoneTxt;
+    private javax.swing.JLabel statusText;
     // End of variables declaration//GEN-END:variables
 }

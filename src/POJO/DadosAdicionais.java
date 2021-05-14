@@ -35,12 +35,10 @@ public class DadosAdicionais {
     }
     
     public void setFuma(String fuma){
-        if (fuma.equals("S") || fuma.equals("s")){
+        if (fuma.equals("sim")){
             this.fuma = true;
-        }else if (fuma.equals("N") || fuma.equals("n")){
+        }else if (fuma.equals("não")){
             this.fuma = false;
-        }else{
-            System.out.println("\nFumante: Digite apenas S para sim ou N para não, valor de Fumante não foi alterado.");
         }
     }
        
@@ -49,12 +47,10 @@ public class DadosAdicionais {
     }
     
     public void setBebe(String bebe){
-        if (bebe.equals("S") || bebe.equals("s")){
+        if (bebe.equals("sim")){
             this.bebe = true;
-        }else if (bebe.equals("N") || bebe.equals("n")){
+        }else if (bebe.equals("não")){
             this.bebe = false;
-        }else{
-            System.out.println("\nConsome álcool: Digite apenas S para sim ou N para não, valor de Consome álcool não foi alterado.");
         }
     }
     
@@ -83,12 +79,10 @@ public class DadosAdicionais {
     }
     
     public void setDoençaCardiaca(String doençaCardiaca){
-        if (doençaCardiaca.equals("S") || doençaCardiaca.equals("s")){
+        if (doençaCardiaca.equals("sim")){
             this.doençaCardiaca = true;
-        }else if (doençaCardiaca.equals("N") || doençaCardiaca.equals("n")){
+        }else if (doençaCardiaca.equals("não")){
             this.doençaCardiaca = false;
-        }else{
-            System.out.println("\nDoença cardiaca: Digite apenas S para sim ou N para não, valor de Doença Cardiaca não foi alterado.");
         }
     }
     

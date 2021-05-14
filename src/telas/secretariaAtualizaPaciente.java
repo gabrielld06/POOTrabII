@@ -74,6 +74,7 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("Selecione o paciente a atualizar:");
 
+        pacienteComboBox.setEditable(true);
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 pacienteComboBoxItemStateChanged(evt);
