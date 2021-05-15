@@ -38,7 +38,7 @@ public class Trabalho {
         //Dados dados = new Dados();
         selecionarUsuario tela = new selecionarUsuario();
         tela.setVisible(true);
-        tela.gerenciador();
+        //tela.gerenciador();
         /*
         try (Scanner leitura = new Scanner(System.in)) {
             String opcaoUsuario;

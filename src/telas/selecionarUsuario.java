@@ -8,8 +8,11 @@ package telas;
 import POJO.Consulta;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,11 +40,15 @@ public class selecionarUsuario extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         jComboBox1 = new javax.swing.JComboBox<>();
         label1 = new java.awt.Label();
-        messageText = new javax.swing.JScrollPane();
-        messageTextField = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("test");
+        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         loginButton.setText("Login");
         loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -60,19 +67,13 @@ public class selecionarUsuario extends javax.swing.JFrame {
 
         label1.setText("Selecione o usuário:");
 
-        messageTextField.setColumns(20);
-        messageTextField.setRows(5);
-        messageText.setViewportView(messageTextField);
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(messageText, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(93, 93, 93)
+                .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(loginButton)
@@ -90,9 +91,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addComponent(loginButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(messageText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         getAccessibleContext().setAccessibleName("");
@@ -114,27 +113,14 @@ public class selecionarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_loginButtonMouseClicked
     
-    public void gerenciador() {
-        String txt = "";
-        List<Consulta> results = gerenciador.buscaConsultasAmanha("");
-        Paciente p = new Paciente();
-        for(int i = 0; i < results.size();i++) {
-            p = results.get(i).getPaciente();
-            if(p.getEmail().equals("") && !p.getTelefone().equals("")) {
-                txt += "SMS enviado para ";
-            } else if(!p.getEmail().equals("") && p.getTelefone().equals("")){
-                txt += "Email enviado para ";
-            } else if(!p.getEmail().equals("") && !p.getTelefone().equals("")) {
-                txt += "SMS e email enviado para ";
-            }
-            txt += p.getNome() + "\n";
-        }
-        messageTextField.setText(txt);
-    }
-    
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        gerenciador.gerenciadorMsg();
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -176,7 +162,5 @@ public class selecionarUsuario extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private java.awt.Label label1;
     private javax.swing.JButton loginButton;
-    private javax.swing.JScrollPane messageText;
-    private javax.swing.JTextArea messageTextField;
     // End of variables declaration//GEN-END:variables
 }

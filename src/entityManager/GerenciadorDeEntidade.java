@@ -13,6 +13,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.persistence.EntityManager;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -95,6 +96,26 @@ public class GerenciadorDeEntidade<Entity> {
                 return 0;
             }
         }
+        
+        public void gerenciadorMsg() {
+        String txt = "";
+        List<Consulta> results = buscaConsultasAmanha("");
+        Paciente p = new Paciente();
+        for(int i = 0; i < results.size();i++) {
+            p = results.get(i).getPaciente();
+            if(p.getEmail().equals("") && !p.getTelefone().equals("")) {
+                txt += "SMS enviado para ";
+            } else if(!p.getEmail().equals("") && p.getTelefone().equals("")){
+                txt += "Email enviado para ";
+            } else if(!p.getEmail().equals("") && !p.getTelefone().equals("")) {
+                txt += "SMS e email enviado para ";
+            } else {
+                txt += "Nenhuma forma de contato registrada para ";
+            }
+            txt += p.getNome() + "\n";
+        }
+        JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+    }
         /*
         // Inserindo uma pessoa
         Pessoa u = new Pessoa();

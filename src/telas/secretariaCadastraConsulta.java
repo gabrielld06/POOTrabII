@@ -223,6 +223,20 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
                 statusText.setText("Ocorreu um erro ao atualizar a consulta.");
                 statusText.setForeground(Color.red);
             }
+            if(novaConsulta.getData().toString().equals(LocalDate.now().plusDays(1).toString())) {
+                String txt = "";
+                if(results.get(index).getEmail().equals("") && !results.get(index).getTelefone().equals("")) {
+                    txt += "SMS enviado para ";
+                } else if(!results.get(index).getEmail().equals("") && results.get(index).getTelefone().equals("")){
+                    txt += "Email enviado para ";
+                } else if(!results.get(index).getEmail().equals("") && !results.get(index).getTelefone().equals("")) {
+                    txt += "SMS e email enviado para ";
+                } else {
+                    txt += "Nenhuma forma de contato registrada para ";
+                }
+                txt += results.get(index).getNome();
+                JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+            }
         } catch(Exception e) {
             JOptionPane.showInputDialog("Formato de data incorreto");
         }
