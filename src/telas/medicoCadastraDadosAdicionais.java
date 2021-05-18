@@ -10,6 +10,7 @@ import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,8 +19,9 @@ import javax.swing.JFrame;
 public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientes();
+    List<Paciente> results = gerenciador.buscaPacienteSemDadosAdicionais();
     JFrame telaAnterior;
+    
     /**
      * Creates new form medicoCadastraDadosAdicionais
      */
@@ -321,6 +323,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente sem dados adicionais.", "Cadastrar dados adicionais", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void pacienteAlergiaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteAlergiaTxtActionPerformed

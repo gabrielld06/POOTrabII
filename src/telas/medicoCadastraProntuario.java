@@ -12,6 +12,7 @@ import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,7 +21,7 @@ import javax.swing.JFrame;
 public class medicoCadastraProntuario extends javax.swing.JFrame {
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientes();
+    List<Paciente> results = gerenciador.buscaPacienteSemProntuarios();
     private JFrame telaAnterior;
     /**
      * Creates new form medicoCadastraProntuario
@@ -220,6 +221,11 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente sem prontuário.", "Cadastrar prontuário", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**

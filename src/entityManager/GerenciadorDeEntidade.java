@@ -8,6 +8,7 @@ package entityManager;
 import POJO.Consulta;
 import POJO.DadosAdicionais;
 import POJO.Paciente;
+import POJO.Prontuario;
 import java.time.LocalDate;
 import java.util.List;
 import javax.persistence.EntityManagerFactory;
@@ -78,6 +79,18 @@ public class GerenciadorDeEntidade<Entity> {
         return em.createQuery("SELECT a FROM Paciente a WHERE a.consulta IS NOT NULL", Paciente.class).getResultList();
     }
 
+    public List<Paciente> buscaPacienteProntuarios() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.prontuario IS NOT NULL", Paciente.class).getResultList();
+    }
+    
+    public List<Paciente> buscaPacienteSemProntuarios() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.prontuario IS NULL", Paciente.class).getResultList();
+    }
+    
+    public List<Paciente> buscaPacienteSemDadosAdicionais() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.dadosAdicionais IS NULL", Paciente.class).getResultList();
+    }
+    
     public List<Consulta> buscaConsultasAmanha(String str) {
         return em.createQuery("SELECT a FROM Consulta a WHERE " + str + "a.data = {d '"
                 + LocalDate.now().plusDays(1).toString()
@@ -87,7 +100,7 @@ public class GerenciadorDeEntidade<Entity> {
     public Consulta buscaConsulta(int id) {
         return em.createQuery("SELECT a FROM Consulta a WHERE a.idConsulta = :id", Consulta.class).setParameter("id", id).getSingleResult();
     }
-
+    
     public int atualizaPaciente() {
         try {
             em.getTransaction().begin();

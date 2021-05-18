@@ -123,7 +123,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         doencaCardiacaNaoButton.setText("Não");
         doencaCardiacaNaoButton.setActionCommand("não");
 
-        jLabel1.setText("Selecione o paciente a cadastrar dados adicionais:");
+        jLabel1.setText("Selecione o paciente a atualizar dados adicionais:");
 
         jLabel6.setText("Doença cardíaca:");
 
