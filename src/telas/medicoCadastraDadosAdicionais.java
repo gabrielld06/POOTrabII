@@ -48,7 +48,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         pacienteComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         pacienteDiabeteTxt = new javax.swing.JTextField();
         statusText = new javax.swing.JLabel();
         pacienteCirurgiaTxt = new javax.swing.JTextField();
@@ -96,7 +96,12 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancelar");
+        exitButton.setText("Cancelar");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
 
         pacienteDiabeteTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,9 +141,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
 
         alcoolGroup.add(alcoolSimButton);
         alcoolSimButton.setText("Sim");
+        alcoolSimButton.setActionCommand("sim");
 
         alcoolGroup.add(alcoolNaoButton);
         alcoolNaoButton.setText("Não");
+        alcoolNaoButton.setActionCommand("não");
 
         pacienteColesterolTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
 
@@ -152,9 +159,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
 
         doencaCardiacaGroup.add(doencaCardiacaSimButton);
         doencaCardiacaSimButton.setText("Sim");
+        doencaCardiacaSimButton.setActionCommand("sim");
 
         doencaCardiacaGroup.add(doencaCardiacaNaoButton);
         doencaCardiacaNaoButton.setText("Não");
+        doencaCardiacaNaoButton.setActionCommand("não");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,7 +188,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jButton2))
+                                .addComponent(exitButton))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel2)
@@ -251,7 +260,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(exitButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusText)
@@ -278,6 +287,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         String fuma, bebe, doencaCardiaca;
         fuma = fumanteGroup.getSelection().getActionCommand();
         bebe = alcoolGroup.getSelection().getActionCommand();
+        System.out.println(bebe);
         doencaCardiaca = doencaCardiacaGroup.getSelection().getActionCommand();
         novoDadosAdicionais.setFuma(fuma);
         novoDadosAdicionais.setBebe(bebe);
@@ -316,6 +326,12 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     private void pacienteAlergiaTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteAlergiaTxtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pacienteAlergiaTxtActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        telaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -359,11 +375,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     private javax.swing.ButtonGroup doencaCardiacaGroup;
     private javax.swing.JRadioButton doencaCardiacaNaoButton;
     private javax.swing.JRadioButton doencaCardiacaSimButton;
+    private javax.swing.JButton exitButton;
     private javax.swing.ButtonGroup fumanteGroup;
     private javax.swing.JRadioButton fumanteNaoButton;
     private javax.swing.JRadioButton fumanteSimButton;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -53,7 +53,7 @@ public class secretariaMenu extends javax.swing.JFrame {
         menuText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuText.setText("Menu secretaria");
         menuText.setPreferredSize(new java.awt.Dimension(125, 25));
-        getContentPane().add(menuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+        getContentPane().add(menuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
 
         exitButton.setText("Sair");
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -71,7 +71,12 @@ public class secretariaMenu extends javax.swing.JFrame {
                 cadastrarPacienteButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(cadastrarPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 103, -1, -1));
+        cadastrarPacienteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarPacienteButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(cadastrarPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         atualizaPacienteButton.setText("Atualizar Paciente");
         atualizaPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -81,7 +86,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 atualizaPacienteButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(atualizaPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 143, -1, -1));
+        getContentPane().add(atualizaPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         removePacienteButton.setText("Remover Paciente");
         removePacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -91,7 +96,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 removePacienteButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(removePacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 183, -1, -1));
+        getContentPane().add(removePacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         cadastrarConsultaButton.setText("Cadastrar Consulta");
         cadastrarConsultaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +104,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 cadastrarConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastrarConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 103, -1, -1));
+        getContentPane().add(cadastrarConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         atualizaConsultaButton.setText("Atualizar Consulta");
         atualizaConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
@@ -108,7 +113,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 atualizaConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(atualizaConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 143, -1, -1));
+        getContentPane().add(atualizaConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
 
         removeConsultaButton.setText("Remover Consulta");
         removeConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
@@ -117,7 +122,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 removeConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(removeConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 183, -1, -1));
+        getContentPane().add(removeConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         gerarRelatorioConsultaButton.setText("Gerar Relatório de Consulta");
         gerarRelatorioConsultaButton.setMaximumSize(new java.awt.Dimension(170, 22));
@@ -127,7 +132,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 gerarRelatorioConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 223, -1, -1));
+        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,6 +191,10 @@ public class secretariaMenu extends javax.swing.JFrame {
         secretariaGerarRelatorioConsulta tela = new secretariaGerarRelatorioConsulta(this);
         tela.setVisible(true);
     }//GEN-LAST:event_gerarRelatorioConsultaButtonActionPerformed
+
+    private void cadastrarPacienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPacienteButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cadastrarPacienteButtonActionPerformed
 
     /**
      * @param args the command line arguments

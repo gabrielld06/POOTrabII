@@ -6,6 +6,7 @@
 package entityManager;
 
 import POJO.Consulta;
+import POJO.DadosAdicionais;
 import POJO.Paciente;
 import java.time.LocalDate;
 import java.util.List;
@@ -20,94 +21,96 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class GerenciadorDeEntidade<Entity> {
-        // Cria um gerenciado de entidade para gerenciar as entidades do programa
-        // Um pojo é tratado como uma entidade no mapeamento objeto-relacional
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalhoPU");
-        EntityManager em = emf.createEntityManager();      
-        
-        // se der merda colocar o return
-        public int inserir(Entity entity) {
-            try {
-                em.getTransaction().begin();
-                em.persist(entity);
-                em.getTransaction().commit();
-                return 1;
-            } catch(Exception E) {
-                em.getTransaction().rollback();
-                System.out.println(E);
-                return 0;
-            }
+
+    // Cria um gerenciado de entidade para gerenciar as entidades do programa
+    // Um pojo é tratado como uma entidade no mapeamento objeto-relacional
+    EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalhoPU");
+    EntityManager em = emf.createEntityManager();
+
+    // se der merda colocar o return
+    public int inserir(Entity entity) {
+        try {
+            em.getTransaction().begin();
+            em.persist(entity);
+            em.getTransaction().commit();
+            return 1;
+        } catch (Exception E) {
+            em.getTransaction().rollback();
+            System.out.println(E);
+            return 0;
         }
-        
-        public int atualiza() {
-            try {
-                em.getTransaction().begin();
-                em.getTransaction().commit();
-                return 1;
-            } catch(Exception E) {
-                em.getTransaction().rollback();
-                System.out.println(E);
-                return 0;
-            }
+    }
+
+    public int atualiza() {
+        try {
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            return 1;
+        } catch (Exception E) {
+            em.getTransaction().rollback();
+            System.out.println(E);
+            return 0;
         }
-        
-        public int remove(Entity entity) {
-            try {
-                em.getTransaction().begin();
-                em.remove(entity);
-                em.getTransaction().commit();
-                return 1;
-            } catch(Exception E) {
-                em.getTransaction().rollback();
-                System.out.println(E);
-                return 0;
-            }
+    }
+
+    public int remove(Entity entity) {
+        try {
+            em.getTransaction().begin();
+            em.remove(entity);
+            em.getTransaction().commit();
+            return 1;
+        } catch (Exception E) {
+            em.getTransaction().rollback();
+            System.out.println(E);
+            return 0;
         }
-        
-        public List<Paciente> getPacientes() {
-            return em.createQuery("SELECT a FROM Paciente a", Paciente.class).getResultList();
+    }
+
+    public List<Paciente> getPacientes() {
+        return em.createQuery("SELECT a FROM Paciente a", Paciente.class).getResultList();
+    }
+
+    public Paciente buscaPaciente(int idPaciente) {
+        return em.find(Paciente.class, idPaciente);
+    }
+
+    public List<Paciente> buscaPacienteConsultas() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.consulta IS NOT NULL", Paciente.class).getResultList();
+    }
+
+    public List<Consulta> buscaConsultasAmanha(String str) {
+        return em.createQuery("SELECT a FROM Consulta a WHERE " + str + "a.data = {d '"
+                + LocalDate.now().plusDays(1).toString()
+                + "'}", Consulta.class).getResultList();
+    }
+
+    public Consulta buscaConsulta(int id) {
+        return em.createQuery("SELECT a FROM Consulta a WHERE a.idConsulta = :id", Consulta.class).setParameter("id", id).getSingleResult();
+    }
+
+    public int atualizaPaciente() {
+        try {
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            return 1;
+        } catch (Exception E) {
+            em.getTransaction().rollback();
+            System.out.println(E);
+            return 0;
         }
-        
-        public Paciente buscaPaciente(int idPaciente) {
-            return em.find(Paciente.class, idPaciente);
-        }
-        public List<Paciente> buscaPacienteConsultas() {
-            return em.createQuery("SELECT a FROM Paciente a WHERE a.consulta IS NOT NULL", Paciente.class).getResultList();
-        }
-                
-        public List<Consulta> buscaConsultasAmanha(String str) {
-            return em.createQuery("SELECT a FROM Consulta a WHERE " + str + "a.data = {d '" 
-                    + LocalDate.now().plusDays(1).toString() 
-                    + "'}", Consulta.class).getResultList();
-        }
-        
-        public Consulta buscaConsulta(int id) {
-            return em.createQuery("SELECT a FROM Consulta a WHERE a.idConsulta = :id", Consulta.class).setParameter("id", id).getSingleResult();
-        }
-        
-        public int atualizaPaciente() {
-            try {
-                em.getTransaction().begin();
-                em.getTransaction().commit();
-                return 1;
-            } catch(Exception E) {
-                em.getTransaction().rollback();
-                System.out.println(E);
-                return 0;
-            }
-        }
-        
-        public void gerenciadorMsg() {
+    }
+
+    public void gerenciadorMsg() {
         String txt = "";
         List<Consulta> results = buscaConsultasAmanha("");
         Paciente p = new Paciente();
-        for(int i = 0; i < results.size();i++) {
+        for (int i = 0; i < results.size(); i++) {
             p = results.get(i).getPaciente();
-            if(p.getEmail().equals("") && !p.getTelefone().equals("")) {
+            if (p.getEmail().equals("") && !p.getTelefone().equals("")) {
                 txt += "SMS enviado para ";
-            } else if(!p.getEmail().equals("") && p.getTelefone().equals("")){
+            } else if (!p.getEmail().equals("") && p.getTelefone().equals("")) {
                 txt += "Email enviado para ";
-            } else if(!p.getEmail().equals("") && !p.getTelefone().equals("")) {
+            } else if (!p.getEmail().equals("") && !p.getTelefone().equals("")) {
                 txt += "SMS e email enviado para ";
             } else {
                 txt += "Nenhuma forma de contato registrada para ";
@@ -116,7 +119,15 @@ public class GerenciadorDeEntidade<Entity> {
         }
         JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
     }
-        /*
+
+    public List<Paciente> getPacientesDadosAdicionais() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.dadosAdicionais IS NOT NULL", Paciente.class).getResultList();
+    }
+
+    public DadosAdicionais buscaDadosAdicionais(int idDadosAdicionais) {
+        return em.find(DadosAdicionais.class, idDadosAdicionais);
+    }
+    /*
         // Inserindo uma pessoa
         Pessoa u = new Pessoa();
         u.setNome("Joao");
