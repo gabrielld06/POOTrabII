@@ -9,6 +9,7 @@ import POJO.Consulta;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -79,7 +80,7 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
 
         jLabel1.setText("Paciente");
 
-        jLabel3.setText("Medico");
+        jLabel3.setText("Medico:");
 
         confirmaButton.setText("Confirmar");
         confirmaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -90,11 +91,11 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
 
         jLabel4.setText("Data:");
 
-        jLabel5.setText("Horario");
+        jLabel5.setText("Horario:");
 
         jLabel8.setText("Digite as informações para atualizar a Consulta");
 
-        jLabel6.setText("Tipo");
+        jLabel6.setText("Tipo:");
 
         exitButton.setText("Cancelar");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -116,79 +117,83 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel8))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
                         .addComponent(jLabel9)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusText)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(statusText))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(confirmaButton)
-                                .addGap(18, 18, 18)
-                                .addComponent(exitButton))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(medicoTextLbl)
-                                        .addComponent(dataTextLbl)
-                                        .addComponent(horarioTextLbl)
-                                        .addComponent(tipoTextLbl))
-                                    .addGap(59, 59, 59))))
-                        .addGap(84, 84, 84))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addComponent(jLabel8)
-                .addGap(0, 30, Short.MAX_VALUE))
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel4))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(65, 65, 65)
+                                .addComponent(jLabel6)))
+                        .addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(horarioTextLbl)
+                            .addComponent(dataTextLbl)
+                            .addComponent(medicoTextLbl)
+                            .addComponent(tipoTextLbl)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(65, 65, 65)
+                        .addComponent(confirmaButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(exitButton)))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(65, 65, 65)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(40, 40, 40))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(medicoTextLbl)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel1))
+                    .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(medicoTextLbl))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(dataTextLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(horarioTextLbl))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(tipoTextLbl))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(confirmaButton)
                     .addComponent(exitButton))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(statusText))
-                .addGap(8, 8, 8))
+                .addContainerGap())
         );
 
         pack();
@@ -211,7 +216,7 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
         try {
             int index = pacienteComboBox.getSelectedIndex();
             medicoTextLbl.setText(results.get(index).getConsulta().getMedico());
-            dataTextLbl.setText(results.get(index).getConsulta().getData().toString());
+            dataTextLbl.setText(Date.valueOf(results.get(index).getConsulta().getData()).toString());
             horarioTextLbl.setText(results.get(index).getConsulta().getHorario());
             tipoTextLbl.setText(results.get(index).getConsulta().getTipo());
             statusText.setText("Aguardando...");
@@ -223,12 +228,12 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
 
     private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
         int index = pacienteComboBox.getSelectedIndex();
-        Consulta consulta = gerenciador.buscaConsulta(results.get(index).getConsulta().getIdConsulta());
+        Consulta consulta = results.get(index).getConsulta();
         results.get(index).setConsulta(null);
         int status = gerenciador.remove(consulta);
         if (status == 1){
             statusText.setText("Consulta removida com sucesso!");
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
             pacienteComboBox.removeItemAt(index);
             results = gerenciador.buscaPacienteConsultas();
             if (results.size() == 0){
@@ -238,7 +243,7 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
             }
         }else{
             statusText.setText("Erro ao remover consulta!");
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_confirmaButtonActionPerformed
 

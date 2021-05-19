@@ -328,6 +328,7 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
         DadosAdicionais dadosAdicionaisRemover = results.get(index).getDadosAdicionais();
@@ -335,7 +336,7 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         int status = gerenciador.remove(dadosAdicionaisRemover);
         if (status == 1){
             statusText.setText(String.format("Dados adicionais do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
             pacienteComboBox.removeItemAt(index);
             results = gerenciador.getPacientesDadosAdicionais();
             if (results.size() == 0){
@@ -345,7 +346,11 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
             }
         }else{
             statusText.setText("Erro ao remover paciente!");
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
+        }
+        }catch(Exception e){
+            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
+            statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

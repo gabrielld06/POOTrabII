@@ -287,6 +287,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
         Paciente paciente = gerenciador.buscaPaciente(idPaciente);
@@ -308,7 +309,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         int status = gerenciador.inserir(novoDadosAdicionais);
         if (status == 1){
             statusText.setText(String.format("Dados adicionais do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
             pacienteComboBox.removeItemAt(index);
             results = gerenciador.buscaPacienteSemDadosAdicionais();
             if (results.size() == 0){
@@ -318,6 +319,10 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
             }
         }else{
             statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
+            statusText.setForeground(Color.red);
+        }
+        }catch(Exception e){
+            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
         

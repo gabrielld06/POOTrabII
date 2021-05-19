@@ -5,9 +5,13 @@
  */
 package telas;
 
+import POJO.Consulta;
+import POJO.DadosAdicionais;
 import POJO.Paciente;
+import POJO.Prontuario;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.sql.Date;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -251,7 +255,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
         } else {
             pacienteNomeText.setText(results.get(index).getNome());
             pacienteConvenioText.setText(results.get(index).getConvenio());
-            //pacienteDataNascimentoTxt.setText(results.get(index).getDataNascimento().toString());
+            pacienteDataNascimentoText.setText(results.get(index).getDataNascimento().toString());
             pacienteEnderecoText.setText(results.get(index).getEndereco());
             pacienteTelefoneText.setText(results.get(index).getTelefone());
             pacienteEmailText.setText(results.get(index).getEmail());
@@ -266,10 +270,31 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
         Paciente pacienteRemover = gerenciador.buscaPaciente(idPaciente);
+        if (pacienteRemover.getConsulta() != null)
+        {
+            Consulta consulta = pacienteRemover.getConsulta();
+            pacienteRemover.setConsulta(null);
+            gerenciador.remove(consulta);
+        }
+        
+        if (pacienteRemover.getDadosAdicionais()!= null)
+        {
+            DadosAdicionais dadosAdicionais = pacienteRemover.getDadosAdicionais();
+            pacienteRemover.setDadosAdicionais(null);
+            gerenciador.remove(dadosAdicionais);
+        }
+        
+        if (pacienteRemover.getProntuario()!= null)
+        {
+            Prontuario prontuario = pacienteRemover.getProntuario();
+            pacienteRemover.setProntuario(null);
+            gerenciador.remove(prontuario);
+        }
+        
         int status = gerenciador.remove(pacienteRemover);
         if (status == 1){
             statusText.setText("Paciente removido com sucesso!");
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
             pacienteComboBox.removeItemAt(index);
             results = gerenciador.getPacientes();
             if (results.size() == 0){
@@ -279,7 +304,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
             }
         }else{
             statusText.setText("Erro ao remover paciente!");
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.red);
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

@@ -9,6 +9,7 @@ import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -45,7 +46,6 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
 
         pacienteTelefoneTxt = new javax.swing.JTextField();
         pacienteEmailTxt = new javax.swing.JTextField();
-        pacienteDataNascimentoTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -60,6 +60,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
         pacienteConvenioCBox = new javax.swing.JComboBox<>();
         statusText = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
+        pacienteDataNascimentoTxt = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,13 +75,6 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
         pacienteEmailTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteEmailTxtActionPerformed(evt);
-            }
-        });
-
-        pacienteDataNascimentoTxt.setText("aaaa-mm-dd");
-        pacienteDataNascimentoTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacienteDataNascimentoTxtActionPerformed(evt);
             }
         });
 
@@ -132,33 +126,15 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
 
         jLabel9.setText("Status:");
 
+        pacienteDataNascimentoTxt.setDateFormatString("dd/MM/yyyy");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pacienteEnderecoTxt)
-                            .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(pacienteNomeTxt)
-                            .addComponent(pacienteTelefoneTxt)
-                            .addComponent(pacienteEmailTxt)
-                            .addComponent(pacienteConvenioCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel8)
                 .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,6 +149,25 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(statusText)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(pacienteEnderecoTxt)
+                        .addComponent(pacienteNomeTxt)
+                        .addComponent(pacienteTelefoneTxt)
+                        .addComponent(pacienteEmailTxt)
+                        .addComponent(pacienteConvenioCBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,10 +183,10 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(pacienteConvenioCBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(pacienteDataNascimentoTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(pacienteTelefoneTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -225,10 +220,6 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pacienteEmailTxtActionPerformed
 
-    private void pacienteDataNascimentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteDataNascimentoTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pacienteDataNascimentoTxtActionPerformed
-
     private void pacienteNomeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteNomeTxtActionPerformed
 
     }//GEN-LAST:event_pacienteNomeTxtActionPerformed
@@ -240,17 +231,18 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Paciente novoPaciente = new Paciente();
         try {
+            LocalDate data = pacienteDataNascimentoTxt.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             novoPaciente.setNome(pacienteNomeTxt.getText());
             novoPaciente.setNome(pacienteNomeTxt.getText());;
             novoPaciente.setConvenio(pacienteConvenioCBox.getSelectedItem().toString());
-            novoPaciente.setDataNascimento(LocalDate.parse(pacienteDataNascimentoTxt.getText()));
+            novoPaciente.setDataNascimento(data);
             novoPaciente.setEndereco(pacienteEnderecoTxt.getText());
             novoPaciente.setTelefone(pacienteTelefoneTxt.getText());
             novoPaciente.setEmail(pacienteEmailTxt.getText());
             int status = gerenciador.inserir(novoPaciente);
             if (status == 1){
                 statusText.setText("Paciente cadastrado com sucesso!");
-                statusText.setForeground(Color.decode("#006400"));
+                statusText.setForeground(Color.decode("#17cf17"));
             }else{
                 statusText.setText("Ocorreu um erro ao cadastrar o paciente.");
                 statusText.setForeground(Color.red);
@@ -313,7 +305,7 @@ public class secretariaCadastraPaciente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> pacienteConvenioCBox;
-    private javax.swing.JTextField pacienteDataNascimentoTxt;
+    private com.toedter.calendar.JDateChooser pacienteDataNascimentoTxt;
     private javax.swing.JTextField pacienteEmailTxt;
     private javax.swing.JTextField pacienteEnderecoTxt;
     private javax.swing.JTextField pacienteNomeTxt;

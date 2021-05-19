@@ -18,9 +18,11 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientesDadosAdicionais();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoAtualizaDadosAdicionais
      */
@@ -30,7 +32,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoAtualizaDadosAdicionais() {
         initComponents();
     }
@@ -219,19 +221,19 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
         int index = pacienteComboBox.getSelectedIndex();
         DadosAdicionais dadosAdicionais = results.get(index).getDadosAdicionais();
-        if (dadosAdicionais.getFuma() == true){
+        if (dadosAdicionais.getFuma() == true) {
             fumanteSimButton.setSelected(true);
-        }else{
+        } else {
             fumanteNaoButton.setSelected(true);
         }
-        if (dadosAdicionais.getBebe() == true){
+        if (dadosAdicionais.getBebe() == true) {
             alcoolSimButton.setSelected(true);
-        }else{
+        } else {
             alcoolNaoButton.setSelected(true);
         }
-        if (dadosAdicionais.getDoençaCardiaca() == true){
+        if (dadosAdicionais.getDoençaCardiaca() == true) {
             doencaCardiacaSimButton.setSelected(true);
-        }else{
+        } else {
             doencaCardiacaNaoButton.setSelected(true);
         }
         pacienteColesterolTxt.setText(Double.toString(dadosAdicionais.getColesterol()));
@@ -245,27 +247,32 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente paciente = gerenciador.buscaPaciente(idPaciente);
-        DadosAdicionais novoDadosAdicionais = paciente.getDadosAdicionais();
-        String fuma, bebe, doencaCardiaca;
-        fuma = fumanteGroup.getSelection().getActionCommand();
-        bebe = alcoolGroup.getSelection().getActionCommand();
-        doencaCardiaca = doencaGroup.getSelection().getActionCommand();
-        novoDadosAdicionais.setFuma(fuma);
-        novoDadosAdicionais.setBebe(bebe);
-        novoDadosAdicionais.setDoençaCardiaca(doencaCardiaca);
-        novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getText());
-        novoDadosAdicionais.setDiabete(pacienteDiabeteTxt.getText());
-        novoDadosAdicionais.setCirurgias(pacienteCirurgiaTxt.getText());
-        novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());
-        int status = gerenciador.atualizaPaciente();
-        if (status == 1){
-            statusText.setText(String.format("Dados adicionais do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#006400"));
-        }else{
-            statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente paciente = gerenciador.buscaPaciente(idPaciente);
+            DadosAdicionais novoDadosAdicionais = paciente.getDadosAdicionais();
+            String fuma, bebe, doencaCardiaca;
+            fuma = fumanteGroup.getSelection().getActionCommand();
+            bebe = alcoolGroup.getSelection().getActionCommand();
+            doencaCardiaca = doencaGroup.getSelection().getActionCommand();
+            novoDadosAdicionais.setFuma(fuma);
+            novoDadosAdicionais.setBebe(bebe);
+            novoDadosAdicionais.setDoençaCardiaca(doencaCardiaca);
+            novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getText());
+            novoDadosAdicionais.setDiabete(pacienteDiabeteTxt.getText());
+            novoDadosAdicionais.setCirurgias(pacienteCirurgiaTxt.getText());
+            novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());
+            int status = gerenciador.atualizaPaciente();
+            if (status == 1) {
+                statusText.setText(String.format("Dados adicionais do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
+                statusText.setForeground(Color.decode("#17cf17"));
+            } else {
+                statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
+                statusText.setForeground(Color.red);
+            }
+        } catch (Exception e) {
+            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
 
@@ -279,7 +286,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
+        if (results.size() == 0) {
             JOptionPane.showMessageDialog(null, "Não há nenhum paciente com dados adicionais cadastrado.", "Atualiza Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();

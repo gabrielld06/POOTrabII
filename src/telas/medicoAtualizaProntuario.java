@@ -198,6 +198,7 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try{
         int index = pacienteComboBox.getSelectedIndex();
         int idPaciente = results.get(index).getIdPaciente();
         Paciente paciente = gerenciador.buscaPaciente(idPaciente);
@@ -208,9 +209,13 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         int status = gerenciador.atualizaPaciente();
         if (status == 1){
             statusText.setText(String.format("Prontuário do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#006400"));
+            statusText.setForeground(Color.decode("#17cf17"));
         }else{
             statusText.setText("Ocorreu um erro atualizar prontuário!");
+            statusText.setForeground(Color.red);
+        }
+        }catch(Exception e){
+            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed

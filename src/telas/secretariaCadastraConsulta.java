@@ -10,6 +10,7 @@ import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -46,13 +47,13 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCalendar1 = new com.toedter.calendar.JCalendar();
         exitButton = new javax.swing.JButton();
         confirmaButton = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         statusText = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         horarioTextPane = new javax.swing.JTextField();
-        dataTextPane = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -62,13 +63,18 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         medicoTextPane = new javax.swing.JTextPane();
         tipoComboBox = new javax.swing.JComboBox<>();
+        dataTextPane = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(291, 297));
+        setPreferredSize(new java.awt.Dimension(291, 320));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(null);
 
         exitButton.setText("Cancelar");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -76,6 +82,8 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(exitButton);
+        exitButton.setBounds(175, 223, 76, 22);
 
         confirmaButton.setText("Confirmar");
         confirmaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,12 +91,20 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
                 confirmaButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(confirmaButton);
+        confirmaButton.setBounds(73, 223, 84, 22);
 
         jLabel8.setText("Digite as informações para marcar a Consulta");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(22, 6, 239, 16);
 
         statusText.setText("Aguardando...");
+        getContentPane().add(statusText);
+        statusText.setBounds(47, 263, 75, 16);
 
         jLabel9.setText("Status:");
+        getContentPane().add(jLabel9);
+        jLabel9.setBounds(6, 263, 35, 16);
 
         horarioTextPane.setText("horario");
         horarioTextPane.addActionListener(new java.awt.event.ActionListener() {
@@ -96,106 +112,45 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
                 horarioTextPaneActionPerformed(evt);
             }
         });
-
-        dataTextPane.setText("data");
-        dataTextPane.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dataTextPaneActionPerformed(evt);
-            }
-        });
+        getContentPane().add(horarioTextPane);
+        horarioTextPane.setBounds(98, 142, 99, 22);
 
         jLabel3.setText("Medico");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(52, 86, 40, 16);
 
         jLabel4.setText("Data:");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(65, 114, 27, 16);
 
         jLabel5.setText("Horario");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(52, 145, 40, 16);
 
         jLabel6.setText("Tipo");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(69, 179, 23, 16);
+
+        getContentPane().add(pacienteComboBox);
+        pacienteComboBox.setBounds(98, 40, 100, 22);
 
         jLabel1.setText("Paciente");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(47, 43, 45, 16);
 
         medicoTextPane.setText("medico");
         jScrollPane1.setViewportView(medicoTextPane);
 
-        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Retorno" }));
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(98, 80, 100, 22);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(73, 73, 73)
-                .addComponent(confirmaButton)
-                .addGap(18, 18, 18)
-                .addComponent(exitButton)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(dataTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(tipoComboBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 99, Short.MAX_VALUE)
-                                        .addComponent(horarioTextPane, javax.swing.GroupLayout.Alignment.LEADING))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(statusText))))))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(dataTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(horarioTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(tipoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmaButton)
-                    .addComponent(exitButton))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(statusText)
-                    .addComponent(jLabel9))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
+        tipoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Normal", "Retorno" }));
+        getContentPane().add(tipoComboBox);
+        tipoComboBox.setBounds(98, 176, 99, 22);
+
+        dataTextPane.setDateFormatString("dd/MM/yyyy");
+        getContentPane().add(dataTextPane);
+        dataTextPane.setBounds(100, 110, 120, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -209,8 +164,9 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
     private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
         Consulta novaConsulta = new Consulta();
         try {
+            LocalDate data = dataTextPane.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             novaConsulta.setMedico(medicoTextPane.getText());
-            novaConsulta.setData(LocalDate.parse(dataTextPane.getText()));
+            novaConsulta.setData(data);
             novaConsulta.setHorario(horarioTextPane.getText());
             novaConsulta.setTipo(tipoComboBox.getSelectedItem().toString());
             int index = pacienteComboBox.getSelectedIndex();
@@ -219,7 +175,7 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
             int status = gerenciador.inserir(novaConsulta);
             if (status == 1){
                 statusText.setText("Consulta cadastrada com sucesso!");
-                statusText.setForeground(Color.decode("#006400"));
+                statusText.setForeground(Color.decode("#17cf17"));
             }else{
                 statusText.setText("Ocorreu um erro ao atualizar a consulta.");
                 statusText.setForeground(Color.red);
@@ -246,10 +202,6 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
     private void horarioTextPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_horarioTextPaneActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_horarioTextPaneActionPerformed
-
-    private void dataTextPaneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dataTextPaneActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataTextPaneActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
@@ -295,9 +247,10 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton confirmaButton;
-    private javax.swing.JTextField dataTextPane;
+    private com.toedter.calendar.JDateChooser dataTextPane;
     private javax.swing.JButton exitButton;
     private javax.swing.JTextField horarioTextPane;
+    private com.toedter.calendar.JCalendar jCalendar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

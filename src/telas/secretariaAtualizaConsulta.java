@@ -9,7 +9,9 @@ import POJO.Consulta;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.sql.Date;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -122,7 +124,7 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
             }
         });
 
-        dataTextPane.setDateFormatString("yyyy-MM-dd");
+        dataTextPane.setDateFormatString("dd/MM/yyyy");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -141,7 +143,7 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
                         .addComponent(statusText))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -182,7 +184,7 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(dataTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(horarioTextPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
@@ -213,14 +215,15 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
     private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
         try {
             int index = pacienteComboBox.getSelectedIndex();
+            LocalDate data = dataTextPane.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             results.get(index).getConsulta().setMedico(medicoTextPane.getText());
-            results.get(index).getConsulta().setData(LocalDate.parse(dataTextPane.getDate().toString()));
+            results.get(index).getConsulta().setData(data);
             results.get(index).getConsulta().setHorario(horarioTextPane.getText());
             results.get(index).getConsulta().setTipo(tipoComboBox.getSelectedItem().toString());
             int status = gerenciador.atualiza();
             if (status == 1){
                 statusText.setText("Consulta atualizada com sucesso!");
-                statusText.setForeground(Color.decode("#006400"));
+                statusText.setForeground(Color.decode("#17cf17"));
             }else{
                 statusText.setText("Ocorreu um erro ao atualizar a consulta.");
                 statusText.setForeground(Color.red);
@@ -255,7 +258,7 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
         try {
             int index = pacienteComboBox.getSelectedIndex();
             medicoTextPane.setText(results.get(index).getConsulta().getMedico());
-            //dataTextPane.setText(results.get(index).getConsulta().getData().toString());
+            dataTextPane.setDate(Date.valueOf(results.get(index).getConsulta().getData()));
             horarioTextPane.setText(results.get(index).getConsulta().getHorario());
             tipoComboBox.setSelectedItem(results.get(index).getConsulta().getTipo());
             statusText.setText("Aguardando...");
