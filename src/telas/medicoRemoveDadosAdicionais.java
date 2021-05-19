@@ -373,7 +373,7 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
 
     private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
         statusText.setText("Aguardando...");
-        statusText.setForeground(Color.BLACK);
+        statusText.setForeground(Color.white);
     }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**

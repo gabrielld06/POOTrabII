@@ -278,7 +278,7 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         pacienteTelefoneTxt.setText(results.get(index).getTelefone());
         pacienteEmailTxt.setText(results.get(index).getEmail());
         statusText.setText("Aguardando...");
-        statusText.setForeground(Color.black);
+        statusText.setForeground(Color.white);
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
     private void pacienteDataNascimentoTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteDataNascimentoTxtActionPerformed

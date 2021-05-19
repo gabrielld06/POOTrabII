@@ -152,6 +152,11 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
                 pacienteComboBoxItemStateChanged(evt);
             }
         });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
+            }
+        });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteComboBoxActionPerformed(evt);
@@ -279,6 +284,11 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.white);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

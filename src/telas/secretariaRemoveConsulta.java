@@ -214,7 +214,7 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
             horarioTextLbl.setText(results.get(index).getConsulta().getHorario());
             tipoTextLbl.setText(results.get(index).getConsulta().getTipo());
             statusText.setText("Aguardando...");
-            statusText.setForeground(Color.black);
+            statusText.setForeground(Color.white);
         } catch(Exception e) {
             System.out.println(e);
         }
