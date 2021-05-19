@@ -61,7 +61,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 exitButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(422, 272, -1, -1));
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
 
         cadastrarPacienteButton.setText("Cadastrar Paciente");
         cadastrarPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -132,7 +132,7 @@ public class secretariaMenu extends javax.swing.JFrame {
                 gerarRelatorioConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

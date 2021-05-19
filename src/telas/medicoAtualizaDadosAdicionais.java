@@ -11,6 +11,7 @@ import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -70,11 +71,15 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(410, 375));
+        setPreferredSize(new java.awt.Dimension(415, 410));
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
         });
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         exitButton.setText("Cancelar");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,50 +87,65 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
                 exitButtonActionPerformed(evt);
             }
         });
+        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 310, -1, -1));
 
         alcoolGroup.add(alcoolSimButton);
         alcoolSimButton.setText("Sim");
         alcoolSimButton.setActionCommand("sim");
+        getContentPane().add(alcoolSimButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 100, -1, -1));
 
         pacienteCirurgiaTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteCirurgiaTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(pacienteCirurgiaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 232, 94, -1));
 
         alcoolGroup.add(alcoolNaoButton);
         alcoolNaoButton.setText("Não");
         alcoolNaoButton.setActionCommand("não");
+        getContentPane().add(alcoolNaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 100, -1, -1));
 
         pacienteColesterolTxt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0.00"))));
+        getContentPane().add(pacienteColesterolTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 132, 94, -1));
 
         jLabel2.setText("Fumante:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 68, -1, -1));
 
         pacienteAlergiaTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteAlergiaTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(pacienteAlergiaTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 266, 94, -1));
 
         jLabel3.setText("Consome álcool:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(93, 102, -1, -1));
 
         jLabel9.setText("Alergias:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 266, -1, -1));
 
         jLabel4.setText("Valor do colesterol:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 135, -1, -1));
 
         doencaGroup.add(doencaCardiacaSimButton);
         doencaCardiacaSimButton.setText("Sim");
         doencaCardiacaSimButton.setActionCommand("sim");
+        getContentPane().add(doencaCardiacaSimButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 200, -1, -1));
 
         jLabel5.setText("Diabete:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(139, 169, -1, -1));
 
         doencaGroup.add(doencaCardiacaNaoButton);
         doencaCardiacaNaoButton.setText("Não");
         doencaCardiacaNaoButton.setActionCommand("não");
+        getContentPane().add(doencaCardiacaNaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 200, -1, -1));
 
         jLabel1.setText("Selecione o paciente a atualizar dados adicionais:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 9, -1, -1));
 
         jLabel6.setText("Doença cardíaca:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 202, -1, -1));
 
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -137,8 +157,10 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
                 pacienteComboBoxActionPerformed(evt);
             }
         });
+        getContentPane().add(pacienteComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(269, 6, 129, -1));
 
         jLabel7.setText("Cirurgias:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 235, -1, -1));
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -146,136 +168,30 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, -1, -1));
 
         fumanteGroup.add(fumanteSimButton);
         fumanteSimButton.setText("Sim");
         fumanteSimButton.setActionCommand("sim");
+        getContentPane().add(fumanteSimButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 68, -1, -1));
 
         pacienteDiabeteTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteDiabeteTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(pacienteDiabeteTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 166, 94, -1));
 
         fumanteGroup.add(fumanteNaoButton);
         fumanteNaoButton.setText("Não");
         fumanteNaoButton.setActionCommand("não");
+        getContentPane().add(fumanteNaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(243, 68, -1, -1));
 
         statusText.setText("Aguardando...");
+        getContentPane().add(statusText, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 350, -1, -1));
 
         jLabel8.setText("Status:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(statusText)
-                        .addGap(291, 291, 291))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(exitButton)
-                        .addGap(113, 113, 113))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(1, 1, 1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(80, 80, 80)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel7)
-                                .addComponent(jLabel9))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(fumanteSimButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(fumanteNaoButton))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(alcoolSimButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(alcoolNaoButton))
-                                .addComponent(pacienteColesterolTxt)
-                                .addComponent(pacienteDiabeteTxt)
-                                .addComponent(pacienteCirurgiaTxt)
-                                .addComponent(pacienteAlergiaTxt)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(doencaCardiacaSimButton)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(doencaCardiacaNaoButton)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addContainerGap(23, Short.MAX_VALUE)))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(334, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(statusText)
-                            .addComponent(jLabel8))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(exitButton))
-                        .addGap(27, 27, 27))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1))
-                    .addGap(40, 40, 40)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fumanteSimButton)
-                            .addComponent(fumanteNaoButton)))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(alcoolSimButton)
-                        .addComponent(alcoolNaoButton))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4)
-                        .addComponent(pacienteColesterolTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pacienteDiabeteTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6)
-                        .addComponent(doencaCardiacaSimButton)
-                        .addComponent(doencaCardiacaNaoButton))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(pacienteCirurgiaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel7))
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel9)
-                        .addComponent(pacienteAlergiaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addContainerGap(95, Short.MAX_VALUE)))
-        );
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -340,7 +256,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());
         int status = gerenciador.atualizaPaciente();
         if (status == 1){
-            statusText.setText("Dados adicionais cadastrados com sucesso!");
+            statusText.setText(String.format("Dados adicionais do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
             statusText.setForeground(Color.decode("#006400"));
         }else{
             statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
@@ -357,6 +273,11 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com dados adicionais cadastrado.", "Atualiza Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**

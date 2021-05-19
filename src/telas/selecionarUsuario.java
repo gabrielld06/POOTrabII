@@ -7,6 +7,8 @@ package telas;
 
 import POJO.Consulta;
 import POJO.Paciente;
+import com.formdev.flatlaf.FlatDarkLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -14,21 +16,24 @@ import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import trabalho.Trabalho;
 
 /**
  *
  * @author Gabriel
  */
 public class selecionarUsuario extends javax.swing.JFrame {
+    
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     /**
      * Creates new form main
      */
+    
     public selecionarUsuario() {
         initComponents();
         setLocationRelativeTo(null);
-        
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
+  
     }
 
     /**
@@ -155,24 +160,19 @@ public class selecionarUsuario extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(selecionarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(selecionarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(selecionarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            FlatLightLaf.install();
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Flatlaf Dark".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+//                    break;
+//                }
+//            }
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(selecionarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Trabalho.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

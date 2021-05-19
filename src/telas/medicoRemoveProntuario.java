@@ -5,13 +5,23 @@
  */
 package telas;
 
+import POJO.DadosAdicionais;
+import POJO.Paciente;
+import POJO.Prontuario;
+import entityManager.GerenciadorDeEntidade;
+import java.awt.Color;
+import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gabriel
  */
 public class medicoRemoveProntuario extends javax.swing.JFrame {
+    private Paciente paciente;
+    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    List<Paciente> results = gerenciador.buscaPacienteProntuarios();
     private JFrame telaAnterior;
     /**
      * Creates new form medicoRemoveProntuario
@@ -36,8 +46,27 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
     private void initComponents() {
 
         exitButton = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        statusText = new javax.swing.JLabel();
+        pacienteComboBox = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        pacienteDiagnosticoText = new javax.swing.JTextPane();
+        jButton1 = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        pacienteSintomasText = new javax.swing.JTextPane();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        pacienteTratamentoText = new javax.swing.JTextPane();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         exitButton.setText("Cancelar");
         exitButton.addActionListener(new java.awt.event.ActionListener() {
@@ -46,21 +75,120 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setText("Diagnóstico da doença:");
+
+        jLabel4.setText("Prescrição do tratamento:");
+
+        jLabel1.setText("Selecione o paciente a cadastrar prontuário:");
+
+        statusText.setText("Aguardando...");
+
+        pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                pacienteComboBoxItemStateChanged(evt);
+            }
+        });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
+            }
+        });
+        pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacienteComboBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel8.setText("Status:");
+
+        pacienteDiagnosticoText.setEditable(false);
+        jScrollPane2.setViewportView(pacienteDiagnosticoText);
+
+        jButton1.setText("Confirmar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        pacienteSintomasText.setEditable(false);
+        jScrollPane3.setViewportView(pacienteSintomasText);
+
+        pacienteTratamentoText.setEditable(false);
+        jScrollPane4.setViewportView(pacienteTratamentoText);
+
+        jLabel2.setText("Sintomas:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(287, Short.MAX_VALUE)
+                .addContainerGap(254, Short.MAX_VALUE)
                 .addComponent(exitButton)
-                .addGap(37, 37, 37))
+                .addGap(82, 82, 82))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(statusText)
+                                .addGap(82, 82, 82))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton1)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
+                .addContainerGap(230, Short.MAX_VALUE)
                 .addComponent(exitButton)
-                .addGap(23, 23, 23))
+                .addGap(48, 48, 48))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(20, 20, 20)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(pacienteComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1))
+                    .addGap(32, 32, 32)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2))
+                    .addGap(12, 12, 12)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3))
+                    .addGap(18, 18, 18)
+                    .addComponent(jButton1)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(statusText)
+                        .addComponent(jLabel8))
+                    .addContainerGap(20, Short.MAX_VALUE)))
         );
 
         pack();
@@ -71,6 +199,60 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
+        try{
+        int index = pacienteComboBox.getSelectedIndex();
+        Prontuario prontuario = results.get(index).getProntuario();
+        pacienteSintomasText.setText(prontuario.getSintomas());
+        pacienteTratamentoText.setText(prontuario.getPrescricaoTratamento());
+        pacienteDiagnosticoText.setText(prontuario.getDiagnosticoDoenca());
+        }catch(Exception e){
+            
+        }
+    }//GEN-LAST:event_pacienteComboBoxItemStateChanged
+
+    private void pacienteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteComboBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pacienteComboBoxActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int index = pacienteComboBox.getSelectedIndex();
+        int idPaciente = results.get(index).getIdPaciente();
+        Prontuario prontuarioRemover = results.get(index).getProntuario();
+        results.get(index).setProntuario(null);
+        int status = gerenciador.remove(prontuarioRemover);
+        if (status == 1){
+            statusText.setText(String.format("Prontuário do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
+            statusText.setForeground(Color.decode("#006400"));
+            pacienteComboBox.removeItemAt(index);
+            results = gerenciador.buscaPacienteProntuarios();
+            if (results.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum paciente com prontuário cadastrado", "Remover Prontuário", JOptionPane.ERROR_MESSAGE);
+                telaAnterior.setVisible(true);
+                this.dispose();
+            }
+        }else{
+            statusText.setText("Erro ao remover prontuário!");
+            statusText.setForeground(Color.decode("#006400"));
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        results.forEach(e -> {
+            pacienteComboBox.addItem(e.getNome());
+        });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com prontuário cadastrado.", "Remover Prontuário.", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments
@@ -109,5 +291,19 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JComboBox<String> pacienteComboBox;
+    private javax.swing.JTextPane pacienteDiagnosticoText;
+    private javax.swing.JTextPane pacienteSintomasText;
+    private javax.swing.JTextPane pacienteTratamentoText;
+    private javax.swing.JLabel statusText;
     // End of variables declaration//GEN-END:variables
 }

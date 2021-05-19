@@ -83,6 +83,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
                 pacienteComboBoxItemStateChanged(evt);
             }
         });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
+            }
+        });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteComboBoxActionPerformed(evt);
@@ -273,7 +278,6 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
-
         
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
@@ -302,8 +306,15 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         paciente.setDadosAdicionais(novoDadosAdicionais);
         int status = gerenciador.inserir(novoDadosAdicionais);
         if (status == 1){
-            statusText.setText("Dados adicionais cadastrados com sucesso!");
+            statusText.setText(String.format("Dados adicionais do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
             statusText.setForeground(Color.decode("#006400"));
+            pacienteComboBox.removeItemAt(index);
+            results = gerenciador.buscaPacienteSemDadosAdicionais();
+            if (results.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum paciente com dados adicionais cadastrado.", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
+                telaAnterior.setVisible(true);
+                this.dispose();
+            }
         }else{
             statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
             statusText.setForeground(Color.red);
@@ -339,6 +350,11 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

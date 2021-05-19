@@ -82,6 +82,11 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
                 pacienteComboBoxItemStateChanged(evt);
             }
         });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
+            }
+        });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteComboBoxActionPerformed(evt);
@@ -209,10 +214,17 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
         paciente.setProntuario(novoProntuario);
         int status = gerenciador.inserir(novoProntuario);
         if (status == 1){
-            statusText.setText("Dados adicionais cadastrados com sucesso!");
+            statusText.setText(String.format("Prontuário do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
             statusText.setForeground(Color.decode("#006400"));
+            pacienteComboBox.removeItemAt(index);
+            results = gerenciador.buscaPacienteSemProntuarios();
+            if (results.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nenhum paciente com prontuário cadastrado.", "Cadastrar Prontuário", JOptionPane.ERROR_MESSAGE);
+                telaAnterior.setVisible(true);
+                this.dispose();
+            }
         }else{
-            statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
+            statusText.setText("Ocorreu um erro ao cadastrar o prontuário!");
             statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -227,6 +239,11 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

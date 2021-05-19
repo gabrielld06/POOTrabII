@@ -94,6 +94,11 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
                 pacienteComboBoxItemStateChanged(evt);
             }
         });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
+            }
+        });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pacienteComboBoxActionPerformed(evt);
@@ -328,12 +333,12 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         results.get(index).setDadosAdicionais(null);
         int status = gerenciador.remove(dadosAdicionaisRemover);
         if (status == 1){
-            statusText.setText("Paciente removido com sucesso!");
+            statusText.setText(String.format("Dados adicionais do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
             statusText.setForeground(Color.decode("#006400"));
             pacienteComboBox.removeItemAt(index);
             results = gerenciador.getPacientesDadosAdicionais();
             if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhum paciente com dados adicionais", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Nenhum paciente com dados adicionais cadastrado.", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
                 telaAnterior.setVisible(true);
                 this.dispose();
             }
@@ -359,7 +364,17 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com dados adicionais cadastrado.", "Remover Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

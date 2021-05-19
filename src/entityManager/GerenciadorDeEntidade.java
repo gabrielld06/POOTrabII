@@ -140,6 +140,13 @@ public class GerenciadorDeEntidade<Entity> {
     public DadosAdicionais buscaDadosAdicionais(int idDadosAdicionais) {
         return em.find(DadosAdicionais.class, idDadosAdicionais);
     }
+    
+    public List<Consulta> buscaConsultasMes() {
+        return em.createQuery("SELECT a FROM Consulta a WHERE a.data < {d '"
+                + LocalDate.now().toString() + "'} AND a.data >= {d '" 
+                + LocalDate.now().withDayOfMonth(1).toString()
+                + "'}", Consulta.class).getResultList();
+    }
     /*
         // Inserindo uma pessoa
         Pessoa u = new Pessoa();

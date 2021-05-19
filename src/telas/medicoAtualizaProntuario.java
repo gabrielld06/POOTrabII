@@ -12,6 +12,7 @@ import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -100,6 +101,11 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 pacienteComboBoxItemStateChanged(evt);
+            }
+        });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
             }
         });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -201,7 +207,7 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         novoProntuario.setSintomas(pacienteSintomasText.getText());
         int status = gerenciador.atualizaPaciente();
         if (status == 1){
-            statusText.setText("Prontuário atualizado com sucesso!");
+            statusText.setText(String.format("Prontuário do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
             statusText.setForeground(Color.decode("#006400"));
         }else{
             statusText.setText("Ocorreu um erro atualizar prontuário!");
@@ -225,7 +231,17 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.size() == 0){
+            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com prontuário cadastrado.", "Atualizar Prontuário.", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.BLACK);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments
