@@ -19,10 +19,12 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class medicoCadastraProntuario extends javax.swing.JFrame {
+
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.buscaPacienteSemProntuarios();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoCadastraProntuario
      */
@@ -32,7 +34,7 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoCadastraProntuario() {
         initComponents();
     }
@@ -204,32 +206,32 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente paciente = gerenciador.buscaPaciente(idPaciente);
-        Prontuario novoProntuario = new Prontuario();
-        novoProntuario.setSintomas(pacienteSintomasText.getText());
-        novoProntuario.setPrescricaoTratamento(pacienteTratamentoText.getText());
-        novoProntuario.setDiagnosticoDoenca(pacienteDiagnosticoText.getText());
-        novoProntuario.setPaciente(paciente);
-        paciente.setProntuario(novoProntuario);
-        int status = gerenciador.inserir(novoProntuario);
-        if (status == 1){
-            statusText.setText(String.format("Prontuário do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#17cf17"));
-            pacienteComboBox.removeItemAt(index);
-            results = gerenciador.buscaPacienteSemProntuarios();
-            if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhum paciente com prontuário cadastrado.", "Cadastrar Prontuário", JOptionPane.ERROR_MESSAGE);
-                telaAnterior.setVisible(true);
-                this.dispose();
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente paciente = gerenciador.buscaPaciente(idPaciente);
+            Prontuario novoProntuario = new Prontuario();
+            novoProntuario.setSintomas(pacienteSintomasText.getText());
+            novoProntuario.setPrescricaoTratamento(pacienteTratamentoText.getText());
+            novoProntuario.setDiagnosticoDoenca(pacienteDiagnosticoText.getText());
+            novoProntuario.setPaciente(paciente);
+            paciente.setProntuario(novoProntuario);
+            int status = gerenciador.inserir(novoProntuario);
+            if (status == 1) {
+                statusText.setText(String.format("Prontuário do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
+                statusText.setForeground(Color.decode("#17cf17"));
+                pacienteComboBox.removeItemAt(index);
+                results = gerenciador.buscaPacienteSemProntuarios();
+                if (results.size() == 0) {
+                    JOptionPane.showMessageDialog(this, "Nenhum paciente com prontuário cadastrado.", "Cadastrar Prontuário", JOptionPane.ERROR_MESSAGE);
+                    telaAnterior.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                statusText.setText("Ocorreu um erro ao cadastrar o prontuário!");
+                statusText.setForeground(Color.red);
             }
-        }else{
-            statusText.setText("Ocorreu um erro ao cadastrar o prontuário!");
-            statusText.setForeground(Color.red);
-        }
-        }catch(Exception e){
+        } catch (Exception e) {
             statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
@@ -239,8 +241,8 @@ public class medicoCadastraProntuario extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente sem prontuário.", "Cadastrar prontuário", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente sem prontuário.", "Cadastrar prontuário", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

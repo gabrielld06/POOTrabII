@@ -23,12 +23,13 @@ import trabalho.Trabalho;
  * @author Gabriel
  */
 public class selecionarUsuario extends javax.swing.JFrame {
-    
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+
     /**
      * Creates new form main
      */
-    
+
     public selecionarUsuario() {
         initComponents();
         setLocationRelativeTo(null);
@@ -48,6 +49,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         label1 = new java.awt.Label();
         paaanel = new javax.swing.JPanel();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("test");
@@ -87,6 +89,13 @@ public class selecionarUsuario extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        exitButton.setText("Sair");
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -101,7 +110,10 @@ public class selecionarUsuario extends javax.swing.JFrame {
                         .addComponent(paaanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(loginButton)
+                        .addGap(18, 18, 18)
+                        .addComponent(exitButton))
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
@@ -116,7 +128,9 @@ public class selecionarUsuario extends javax.swing.JFrame {
                         .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(loginButton)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(loginButton)
+                        .addComponent(exitButton))
                     .addComponent(paaanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -128,8 +142,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         System.out.println(jComboBox1.getSelectedItem().toString());
-        //jComboBox1.setSelectedItem("Selecione um usuário...");
-        if(jComboBox1.getSelectedItem().toString() == "Secretária") {
+        if (jComboBox1.getSelectedItem().toString() == "Secretária") {
             secretariaMenu menu = new secretariaMenu(this);
             menu.setVisible(true);
             this.setVisible(false);
@@ -139,7 +152,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
             this.setVisible(false);
         }
     }//GEN-LAST:event_loginButtonMouseClicked
-    
+
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButtonActionPerformed
@@ -163,9 +176,16 @@ public class selecionarUsuario extends javax.swing.JFrame {
             txt += p.getNome() + "\n";
         }
         if (results.size() > 0) {
-            JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        int option = JOptionPane.showConfirmDialog(this, "Deseja realmente sair?", "", JOptionPane.YES_NO_OPTION);
+        if (option == 0)
+            this.dispose();
+    }//GEN-LAST:event_exitButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -180,7 +200,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
             FlatLightLaf.install();
 //            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 //                if ("Flatlaf Dark".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
+            javax.swing.UIManager.setLookAndFeel(new FlatDarkLaf());
 //                    break;
 //                }
 //            }
@@ -189,7 +209,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -199,6 +219,7 @@ public class selecionarUsuario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitButton;
     private javax.swing.JComboBox<String> jComboBox1;
     private java.awt.Label label1;
     private javax.swing.JButton loginButton;

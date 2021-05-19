@@ -21,10 +21,12 @@ import javax.swing.JOptionPane;
  * @author guipa
  */
 public class secretariaRemovePaciente extends javax.swing.JFrame {
+
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientes();
     private JFrame telaAnterior;
+
     /**
      * Creates new form secretariaRemovePaciente
      */
@@ -53,7 +55,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         pacienteComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        confirmButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
         statusText = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -110,18 +112,18 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
                 pacienteComboBoxItemStateChanged(evt);
             }
         });
-        pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacienteComboBoxActionPerformed(evt);
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
             }
         });
 
         jLabel7.setText("Email:");
 
-        jButton1.setText("Confirmar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmButton.setText("Confirmar");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmButtonActionPerformed(evt);
             }
         });
 
@@ -180,7 +182,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
                             .addComponent(jLabel6)
                             .addComponent(jLabel5)
                             .addComponent(jLabel7)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pacienteEmailText)
@@ -235,7 +237,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelButton)
-                    .addComponent(jButton1))
+                    .addComponent(confirmButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(statusText)
@@ -248,73 +250,68 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
         int index = pacienteComboBox.getSelectedIndex();
-        if (index < 0){
-            JOptionPane.showMessageDialog(null, "Todos os pacientes foram removidos", "Remover Paciente", JOptionPane.ERROR_MESSAGE);
-            telaAnterior.setVisible(true);
-            this.dispose();
-        } else {
+        if (index >= 0) {
             pacienteNomeText.setText(results.get(index).getNome());
             pacienteConvenioText.setText(results.get(index).getConvenio());
             pacienteDataNascimentoText.setText(results.get(index).getDataNascimento().toString());
             pacienteEnderecoText.setText(results.get(index).getEndereco());
             pacienteTelefoneText.setText(results.get(index).getTelefone());
+            if (results.get(index).getTelefone().isEmpty()) {
+                pacienteTelefoneText.setText(" ");
+            }
             pacienteEmailText.setText(results.get(index).getEmail());
         }
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
-    private void pacienteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pacienteComboBoxActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente pacienteRemover = gerenciador.buscaPaciente(idPaciente);
-        if (pacienteRemover.getConsulta() != null)
-        {
-            Consulta consulta = pacienteRemover.getConsulta();
-            pacienteRemover.setConsulta(null);
-            gerenciador.remove(consulta);
-        }
-        
-        if (pacienteRemover.getDadosAdicionais()!= null)
-        {
-            DadosAdicionais dadosAdicionais = pacienteRemover.getDadosAdicionais();
-            pacienteRemover.setDadosAdicionais(null);
-            gerenciador.remove(dadosAdicionais);
-        }
-        
-        if (pacienteRemover.getProntuario()!= null)
-        {
-            Prontuario prontuario = pacienteRemover.getProntuario();
-            pacienteRemover.setProntuario(null);
-            gerenciador.remove(prontuario);
-        }
-        
-        int status = gerenciador.remove(pacienteRemover);
-        if (status == 1){
-            statusText.setText("Paciente removido com sucesso!");
-            statusText.setForeground(Color.decode("#17cf17"));
-            pacienteComboBox.removeItemAt(index);
-            results = gerenciador.getPacientes();
-            if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Remover Paciente", JOptionPane.ERROR_MESSAGE);
-                telaAnterior.setVisible(true);
-                this.dispose();
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo remover o paciente?", "", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente pacienteRemover = gerenciador.buscaPaciente(idPaciente);
+            if (pacienteRemover.getConsulta() != null) {
+                Consulta consulta = pacienteRemover.getConsulta();
+                pacienteRemover.setConsulta(null);
+                gerenciador.remove(consulta);
             }
-        }else{
-            statusText.setText("Erro ao remover paciente!");
-            statusText.setForeground(Color.red);
+
+            if (pacienteRemover.getDadosAdicionais() != null) {
+                DadosAdicionais dadosAdicionais = pacienteRemover.getDadosAdicionais();
+                pacienteRemover.setDadosAdicionais(null);
+                gerenciador.remove(dadosAdicionais);
+            }
+
+            if (pacienteRemover.getProntuario() != null) {
+                Prontuario prontuario = pacienteRemover.getProntuario();
+                pacienteRemover.setProntuario(null);
+                gerenciador.remove(prontuario);
+            }
+
+            int status = gerenciador.remove(pacienteRemover);
+            if (status == 1) {
+                statusText.setText("Paciente removido com sucesso!");
+                statusText.setForeground(Color.decode("#17cf17"));
+                pacienteComboBox.removeItemAt(index);
+                results = gerenciador.getPacientes();
+                if (results.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Nenhum paciente cadastrado", "Remover Paciente", JOptionPane.ERROR_MESSAGE);
+                    telaAnterior.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                statusText.setText("Erro ao remover paciente!");
+                statusText.setForeground(Color.red);
+            }
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Remover Paciente", JOptionPane.ERROR_MESSAGE);
+        if (results.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum paciente cadastrado", "Remover Paciente", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }
@@ -325,6 +322,12 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        // TODO add your handling code here:
+        statusText.setText("Aguardando...");
+        statusText.setForeground(Color.white);
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments
@@ -363,7 +366,7 @@ public class secretariaRemovePaciente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton confirmButton;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -9,14 +9,17 @@ import POJO.Consulta;
 import entityManager.GerenciadorDeEntidade;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gabriel
  */
 public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
+
     private JFrame telaAnterior;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+
     /**
      * Creates new form secretariaGerarRelatorioConsulta
      */
@@ -26,7 +29,7 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public secretariaGerarRelatorioConsulta() {
         initComponents();
     }
@@ -141,16 +144,19 @@ public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
     private void gerarRelatorioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioButtonActionPerformed
         // TODO add your handling code here:
         String str = "";
-        if(telefoneCheckBox.isSelected()) {
+        if (telefoneCheckBox.isSelected()) {
             str += "a.paciente.telefone != '' AND ";
         }
-        if(emailCheckBox.isSelected()) {
+        if (emailCheckBox.isSelected()) {
             str += "a.paciente.email != '' AND ";
         }
         String txt = "";
         List<Consulta> results = gerenciador.buscaConsultasAmanha(str);
-        for(int i = 0; i < results.size();i++) {
+        for (int i = 0; i < results.size(); i++) {
             txt += results.get(i).getPaciente().getNome() + "\n";
+        }
+        if (results.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhuma consulta marcada com os filtros selecionados", "Gerar Relatorio", JOptionPane.INFORMATION_MESSAGE);
         }
         campoConsultas.setText(txt);
     }//GEN-LAST:event_gerarRelatorioButtonActionPerformed

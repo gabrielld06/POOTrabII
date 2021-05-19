@@ -23,10 +23,12 @@ import javax.swing.JOptionPane;
  * @author guipa
  */
 public class secretariaAtualizaPaciente extends javax.swing.JFrame {
+
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientes();
     private JFrame telaAnterior;
+
     /**
      * Creates new form secretariaForm
      */
@@ -78,10 +80,15 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
 
         jLabel1.setText("Selecione o paciente a atualizar:");
 
-        pacienteComboBox.setEditable(true);
+        pacienteComboBox.setEditable(false);
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 pacienteComboBoxItemStateChanged(evt);
+            }
+        });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
             }
         });
         pacienteComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -249,10 +256,23 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Atualizar Paciente", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhum paciente cadastrado", "Atualizar Paciente", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
+        }
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            pacienteNomeTxt.setText(results.get(index).getNome());
+            pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
+            pacienteDataNascimentoTxt.setDate(Date.valueOf(results.get(index).getDataNascimento()));
+            pacienteEnderecoTxt.setText(results.get(index).getEndereco());
+            pacienteTelefoneTxt.setText(results.get(index).getTelefone());
+            pacienteEmailTxt.setText(results.get(index).getEmail());
+            statusText.setText("Aguardando...");
+            statusText.setForeground(Color.white);
+        } catch (Exception e) {
+
         }
     }//GEN-LAST:event_formWindowOpened
 
@@ -269,15 +289,19 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteEmailTxtActionPerformed
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
-        int index = pacienteComboBox.getSelectedIndex();
-        pacienteNomeTxt.setText(results.get(index).getNome());
-        pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
-        pacienteDataNascimentoTxt.setDate(Date.valueOf(results.get(index).getConsulta().getData()));
-        pacienteEnderecoTxt.setText(results.get(index).getEndereco());
-        pacienteTelefoneTxt.setText(results.get(index).getTelefone());
-        pacienteEmailTxt.setText(results.get(index).getEmail());
-        statusText.setText("Aguardando...");
-        statusText.setForeground(Color.white);
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            pacienteNomeTxt.setText(results.get(index).getNome());
+            pacienteConvernioCBox.setSelectedItem(results.get(index).getConvenio());
+            pacienteDataNascimentoTxt.setDate(Date.valueOf(results.get(index).getDataNascimento()));
+            pacienteEnderecoTxt.setText(results.get(index).getEndereco());
+            pacienteTelefoneTxt.setText(results.get(index).getTelefone());
+            pacienteEmailTxt.setText(results.get(index).getEmail());
+            statusText.setText("Aguardando...");
+            statusText.setForeground(Color.white);
+        } catch(Exception e) {
+            
+        }
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
     private void pacienteNomeTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteNomeTxtActionPerformed
@@ -297,18 +321,19 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
             pacienteAtualizar.setTelefone(pacienteTelefoneTxt.getText());
             pacienteAtualizar.setEmail(pacienteEmailTxt.getText());
             int status = gerenciador.atualizaPaciente();
-            if (status == 1){
-                pacienteComboBox.removeItemAt(index);
-                pacienteComboBox.insertItemAt(pacienteAtualizar.getNome(), index);
-                pacienteComboBox.setSelectedIndex(index);
+            if (status == 1) {
+                pacienteComboBox.removeAllItems();
+                results.forEach(e -> {
+                    pacienteComboBox.addItem(e.getNome());
+                });
                 statusText.setText("Paciente atualizado com sucesso!");
                 statusText.setForeground(Color.decode("#17cf17"));
-            }else{
+            } else {
                 statusText.setText("Ocorreu um erro ao atualizar o paciente.");
                 statusText.setForeground(Color.red);
-            } 
-        } catch(Exception e) {
-            JOptionPane.showInputDialog("Formato de data incorreto");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -317,6 +342,11 @@ public class secretariaAtualizaPaciente extends javax.swing.JFrame {
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_cancelButtonMouseClicked
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

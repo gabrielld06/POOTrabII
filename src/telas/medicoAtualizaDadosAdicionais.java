@@ -287,7 +287,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
             pacienteComboBox.addItem(e.getNome());
         });
         if (results.size() == 0) {
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com dados adicionais cadastrado.", "Atualiza Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente com dados adicionais cadastrado.", "Atualiza Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

@@ -220,29 +220,32 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            int index = pacienteComboBox.getSelectedIndex();
-            int idPaciente = results.get(index).getIdPaciente();
-            Prontuario prontuarioRemover = results.get(index).getProntuario();
-            results.get(index).setProntuario(null);
-            int status = gerenciador.remove(prontuarioRemover);
-            if (status == 1) {
-                statusText.setText(String.format("Prontuário do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
-                statusText.setForeground(Color.decode("#17cf17"));
-                pacienteComboBox.removeItemAt(index);
-                results = gerenciador.buscaPacienteProntuarios();
-                if (results.size() == 0) {
-                    JOptionPane.showMessageDialog(null, "Nenhum paciente com prontuário cadastrado", "Remover Prontuário", JOptionPane.ERROR_MESSAGE);
-                    telaAnterior.setVisible(true);
-                    this.dispose();
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo remover o prontuario do paciente?", "", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            try {
+                int index = pacienteComboBox.getSelectedIndex();
+                int idPaciente = results.get(index).getIdPaciente();
+                Prontuario prontuarioRemover = results.get(index).getProntuario();
+                results.get(index).setProntuario(null);
+                int status = gerenciador.remove(prontuarioRemover);
+                if (status == 1) {
+                    statusText.setText(String.format("Prontuário do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
+                    statusText.setForeground(Color.decode("#17cf17"));
+                    pacienteComboBox.removeItemAt(index);
+                    results = gerenciador.buscaPacienteProntuarios();
+                    if (results.size() == 0) {
+                        JOptionPane.showMessageDialog(this, "Nenhum paciente com prontuário cadastrado", "Remover Prontuário", JOptionPane.ERROR_MESSAGE);
+                        telaAnterior.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    statusText.setText("Erro ao remover prontuário!");
+                    statusText.setForeground(Color.decode("#17cf17"));
                 }
-            } else {
-                statusText.setText("Erro ao remover prontuário!");
-                statusText.setForeground(Color.decode("#17cf17"));
+            } catch (Exception e) {
+                statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
+                statusText.setForeground(Color.red);
             }
-        } catch (Exception e) {
-            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
-            statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -251,7 +254,7 @@ public class medicoRemoveProntuario extends javax.swing.JFrame {
             pacienteComboBox.addItem(e.getNome());
         });
         if (results.size() == 0) {
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com prontuário cadastrado.", "Remover Prontuário.", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente com prontuário cadastrado.", "Remover Prontuário.", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

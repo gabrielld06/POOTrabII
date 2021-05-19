@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 public class secretariaMenu extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
+
     /**
      * Creates new form secretariaMenu
      */

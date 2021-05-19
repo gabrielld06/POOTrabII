@@ -14,17 +14,18 @@ import javax.swing.JFrame;
 public class medicoMenu extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoMenu
      */
-    
+
     public medicoMenu(JFrame tela) {
         initComponents();
         telaAnterior = tela;
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoMenu() {
         initComponents();
     }

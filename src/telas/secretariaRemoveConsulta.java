@@ -19,9 +19,11 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class secretariaRemoveConsulta extends javax.swing.JFrame {
+
     private JFrame telaAnterior;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.buscaPacienteConsultas();
+
     /**
      * Creates new form secretariaRemoveConsulta
      */
@@ -31,7 +33,7 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public secretariaRemoveConsulta() {
         initComponents();
     }
@@ -73,6 +75,11 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 pacienteComboBoxItemStateChanged(evt);
+            }
+        });
+        pacienteComboBox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pacienteComboBoxMouseClicked(evt);
             }
         });
 
@@ -204,14 +211,49 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Atualizar Consulta", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhuma consulta cadastrada", "Atualizar Consulta", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }
     }//GEN-LAST:event_formWindowOpened
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_pacienteComboBoxItemStateChanged
+
+    private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo remover a consulta?", "", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            int index = pacienteComboBox.getSelectedIndex();
+            Consulta consulta = results.get(index).getConsulta();
+            results.get(index).setConsulta(null);
+            int status = gerenciador.remove(consulta);
+            if (status == 1) {
+                statusText.setText("Consulta removida com sucesso!");
+                statusText.setForeground(Color.decode("#17cf17"));
+                pacienteComboBox.removeItemAt(index);
+                results = gerenciador.buscaPacienteConsultas();
+                if (results.isEmpty()) {
+                    JOptionPane.showMessageDialog(this, "Nenhuma consulta cadastrada", "Remover consulta", JOptionPane.ERROR_MESSAGE);
+                    telaAnterior.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                statusText.setText("Erro ao remover consulta!");
+                statusText.setForeground(Color.red);
+            }
+        }
+    }//GEN-LAST:event_confirmaButtonActionPerformed
+
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        // TODO add your handling code here:
+        telaAnterior.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void pacienteComboBoxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pacienteComboBoxMouseClicked
         // TODO add your handling code here:
         try {
             int index = pacienteComboBox.getSelectedIndex();
@@ -221,37 +263,10 @@ public class secretariaRemoveConsulta extends javax.swing.JFrame {
             tipoTextLbl.setText(results.get(index).getConsulta().getTipo());
             statusText.setText("Aguardando...");
             statusText.setForeground(Color.white);
-        } catch(Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
         }
-    }//GEN-LAST:event_pacienteComboBoxItemStateChanged
-
-    private void confirmaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmaButtonActionPerformed
-        int index = pacienteComboBox.getSelectedIndex();
-        Consulta consulta = results.get(index).getConsulta();
-        results.get(index).setConsulta(null);
-        int status = gerenciador.remove(consulta);
-        if (status == 1){
-            statusText.setText("Consulta removida com sucesso!");
-            statusText.setForeground(Color.decode("#17cf17"));
-            pacienteComboBox.removeItemAt(index);
-            results = gerenciador.buscaPacienteConsultas();
-            if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhuma consulta cadastrada", "Remover consulta", JOptionPane.ERROR_MESSAGE);
-                telaAnterior.setVisible(true);
-                this.dispose();
-            }
-        }else{
-            statusText.setText("Erro ao remover consulta!");
-            statusText.setForeground(Color.red);
-        }
-    }//GEN-LAST:event_confirmaButtonActionPerformed
-
-    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
-        telaAnterior.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_exitButtonActionPerformed
+    }//GEN-LAST:event_pacienteComboBoxMouseClicked
 
     /**
      * @param args the command line arguments

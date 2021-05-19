@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package telas;
+
 import POJO.DadosAdicionais;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
@@ -17,11 +18,12 @@ import javax.swing.JOptionPane;
  * @author guipa
  */
 public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
+
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.buscaPacienteSemDadosAdicionais();
     JFrame telaAnterior;
-    
+
     /**
      * Creates new form medicoCadastraDadosAdicionais
      */
@@ -31,7 +33,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoCadastraDadosAdicionais() {
         initComponents();
     }
@@ -50,7 +52,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         doencaCardiacaGroup = new javax.swing.ButtonGroup();
         pacienteComboBox = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        confirmButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
         pacienteDiabeteTxt = new javax.swing.JTextField();
         statusText = new javax.swing.JLabel();
@@ -97,10 +99,10 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
 
         jLabel7.setText("Cirurgias:");
 
-        jButton1.setText("Confirmar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmButton.setText("Confirmar");
+        confirmButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                confirmButtonActionPerformed(evt);
             }
         });
 
@@ -194,7 +196,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
                         .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(confirmButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(exitButton))
                             .addGroup(layout.createSequentialGroup()
@@ -267,7 +269,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
                     .addComponent(pacienteAlergiaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(confirmButton)
                     .addComponent(exitButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,54 +281,54 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
-        
+
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
     private void pacienteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteComboBoxActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente paciente = gerenciador.buscaPaciente(idPaciente);
-        DadosAdicionais novoDadosAdicionais = new DadosAdicionais();
-        String fuma, bebe, doencaCardiaca;
-        fuma = fumanteGroup.getSelection().getActionCommand();
-        bebe = alcoolGroup.getSelection().getActionCommand();
-        System.out.println(bebe);
-        doencaCardiaca = doencaCardiacaGroup.getSelection().getActionCommand();
-        novoDadosAdicionais.setFuma(fuma);
-        novoDadosAdicionais.setBebe(bebe);
-        novoDadosAdicionais.setDoençaCardiaca(doencaCardiaca);
-        novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getText());
-        novoDadosAdicionais.setDiabete(pacienteDiabeteTxt.getText());
-        novoDadosAdicionais.setCirurgias(pacienteCirurgiaTxt.getText());
-        novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());
-        novoDadosAdicionais.setPaciente(paciente);
-        paciente.setDadosAdicionais(novoDadosAdicionais);
-        int status = gerenciador.inserir(novoDadosAdicionais);
-        if (status == 1){
-            statusText.setText(String.format("Dados adicionais do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#17cf17"));
-            pacienteComboBox.removeItemAt(index);
-            results = gerenciador.buscaPacienteSemDadosAdicionais();
-            if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhum paciente com dados adicionais cadastrado.", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
-                telaAnterior.setVisible(true);
-                this.dispose();
+    private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente paciente = gerenciador.buscaPaciente(idPaciente);
+            DadosAdicionais novoDadosAdicionais = new DadosAdicionais();
+            String fuma, bebe, doencaCardiaca;
+            fuma = fumanteGroup.getSelection().getActionCommand();
+            bebe = alcoolGroup.getSelection().getActionCommand();
+            System.out.println(bebe);
+            doencaCardiaca = doencaCardiacaGroup.getSelection().getActionCommand();
+            novoDadosAdicionais.setFuma(fuma);
+            novoDadosAdicionais.setBebe(bebe);
+            novoDadosAdicionais.setDoençaCardiaca(doencaCardiaca);
+            novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getText());
+            novoDadosAdicionais.setDiabete(pacienteDiabeteTxt.getText());
+            novoDadosAdicionais.setCirurgias(pacienteCirurgiaTxt.getText());
+            novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());
+            novoDadosAdicionais.setPaciente(paciente);
+            paciente.setDadosAdicionais(novoDadosAdicionais);
+            int status = gerenciador.inserir(novoDadosAdicionais);
+            if (status == 1) {
+                statusText.setText(String.format("Dados adicionais do paciente %s cadastrado com sucesso!", pacienteComboBox.getSelectedItem()));
+                statusText.setForeground(Color.decode("#17cf17"));
+                pacienteComboBox.removeItemAt(index);
+                results = gerenciador.buscaPacienteSemDadosAdicionais();
+                if (results.size() == 0) {
+                    JOptionPane.showMessageDialog(this, "Nenhum paciente sem dados adicionais cadastrado.", "Cadastrar Dados adicionais", JOptionPane.ERROR_MESSAGE);
+                    telaAnterior.setVisible(true);
+                    this.dispose();
+                }
+            } else {
+                statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
+                statusText.setForeground(Color.red);
             }
-        }else{
-            statusText.setText("Ocorreu um erro ao cadastrar os dados adicionais!");
-            statusText.setForeground(Color.red);
-        }
-        }catch(Exception e){
+        } catch (Exception e) {
             statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_confirmButtonActionPerformed
 
     private void pacienteDiabeteTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteDiabeteTxtActionPerformed
         // TODO add your handling code here:
@@ -340,8 +342,8 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente sem dados adicionais.", "Cadastrar dados adicionais", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente sem dados adicionais.", "Cadastrar dados adicionais", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }
@@ -401,6 +403,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     private javax.swing.ButtonGroup alcoolGroup;
     private javax.swing.JRadioButton alcoolNaoButton;
     private javax.swing.JRadioButton alcoolSimButton;
+    private javax.swing.JButton confirmButton;
     private javax.swing.ButtonGroup doencaCardiacaGroup;
     private javax.swing.JRadioButton doencaCardiacaNaoButton;
     private javax.swing.JRadioButton doencaCardiacaSimButton;
@@ -408,7 +411,6 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
     private javax.swing.ButtonGroup fumanteGroup;
     private javax.swing.JRadioButton fumanteNaoButton;
     private javax.swing.JRadioButton fumanteSimButton;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

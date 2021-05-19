@@ -10,6 +10,7 @@ import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.util.List;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,9 +18,11 @@ import javax.swing.table.DefaultTableModel;
  * @author guipa
  */
 public class medicoGerarClientesAtendidos extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Consulta> results = gerenciador.buscaConsultasMes();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoGerarClientesAtendidos
      */
@@ -29,7 +32,7 @@ public class medicoGerarClientesAtendidos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoGerarClientesAtendidos() {
         initComponents();
     }
@@ -116,13 +119,16 @@ public class medicoGerarClientesAtendidos extends javax.swing.JFrame {
         dtm.setRowCount(results.size());
         totalLabel.setText("Total: " + String.valueOf(results.size()));
         consultasTable.setModel(dtm);
-        int i = 0; 
-        for (Consulta e : results){
+        int i = 0;
+        for (Consulta e : results) {
             Paciente paciente = e.getPaciente();
             consultasTable.setValueAt(paciente.getNome(), i, 0);
             consultasTable.setValueAt(e.getData().toString(), i, 1);
             consultasTable.setValueAt(e.getTipo(), i, 2);
             i++;
+        }
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhum paciente atendido no mês", "Gerar Relatorio", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
 

@@ -71,6 +71,10 @@ public class GerenciadorDeEntidade<Entity> {
         return em.createQuery("SELECT a FROM Paciente a", Paciente.class).getResultList();
     }
 
+    public List<Paciente> getPacientesSemConsulta() {
+        return em.createQuery("SELECT a FROM Paciente a WHERE a.consulta IS NULL", Paciente.class).getResultList();
+    }
+
     public Paciente buscaPaciente(int idPaciente) {
         return em.find(Paciente.class, idPaciente);
     }
@@ -82,15 +86,15 @@ public class GerenciadorDeEntidade<Entity> {
     public List<Paciente> buscaPacienteProntuarios() {
         return em.createQuery("SELECT a FROM Paciente a WHERE a.prontuario IS NOT NULL", Paciente.class).getResultList();
     }
-    
+
     public List<Paciente> buscaPacienteSemProntuarios() {
         return em.createQuery("SELECT a FROM Paciente a WHERE a.prontuario IS NULL", Paciente.class).getResultList();
     }
-    
+
     public List<Paciente> buscaPacienteSemDadosAdicionais() {
         return em.createQuery("SELECT a FROM Paciente a WHERE a.dadosAdicionais IS NULL", Paciente.class).getResultList();
     }
-    
+
     public List<Consulta> buscaConsultasAmanha(String str) {
         return em.createQuery("SELECT a FROM Consulta a WHERE " + str + "a.data = {d '"
                 + LocalDate.now().plusDays(1).toString()
@@ -100,7 +104,7 @@ public class GerenciadorDeEntidade<Entity> {
     public Consulta buscaConsulta(int id) {
         return em.createQuery("SELECT a FROM Consulta a WHERE a.idConsulta = :id", Consulta.class).setParameter("id", id).getSingleResult();
     }
-    
+
     public int atualizaPaciente() {
         try {
             em.getTransaction().begin();
@@ -120,10 +124,10 @@ public class GerenciadorDeEntidade<Entity> {
     public DadosAdicionais buscaDadosAdicionais(int idDadosAdicionais) {
         return em.find(DadosAdicionais.class, idDadosAdicionais);
     }
-    
+
     public List<Consulta> buscaConsultasMes() {
         return em.createQuery("SELECT a FROM Consulta a WHERE a.data < {d '"
-                + LocalDate.now().toString() + "'} AND a.data >= {d '" 
+                + LocalDate.now().toString() + "'} AND a.data >= {d '"
                 + LocalDate.now().withDayOfMonth(1).toString()
                 + "'}", Consulta.class).getResultList();
     }

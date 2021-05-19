@@ -16,9 +16,11 @@ import javax.swing.JOptionPane;
  * @author guipa
  */
 public class medicoDeclaracaoAcompanhamento extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientes();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoDeclaracaoAcompanhamento
      */
@@ -63,8 +65,6 @@ public class medicoDeclaracaoAcompanhamento extends javax.swing.JFrame {
         jLabel2.setText("Receita:");
 
         jLabel1.setText("Selecione o paciente:");
-
-        pacienteComboBox.setEditable(true);
 
         jButton1.setText("Confirmar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +125,7 @@ public class medicoDeclaracaoAcompanhamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, String.format("Receita do paciente %s gerada com sucesso!", pacienteComboBox.getSelectedItem()), "Gerar Receita",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, String.format("Receita do paciente %s gerada com sucesso!", pacienteComboBox.getSelectedItem()), "Gerar Receita", JOptionPane.INFORMATION_MESSAGE);
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -139,8 +139,8 @@ public class medicoDeclaracaoAcompanhamento extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente cadastrado.", "Gerar Declaração de Acompanhamento", JOptionPane.INFORMATION_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente cadastrado.", "Gerar Declaração de Acompanhamento", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

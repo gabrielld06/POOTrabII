@@ -16,9 +16,11 @@ import javax.swing.JOptionPane;
  * @author guipa
  */
 public class medicoGerarAtestado extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientes();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoGerarAtestado
      */
@@ -28,7 +30,7 @@ public class medicoGerarAtestado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoGerarAtestado() {
         initComponents();
     }
@@ -64,7 +66,6 @@ public class medicoGerarAtestado extends javax.swing.JFrame {
 
         jLabel1.setText("Selecione o paciente:");
 
-        pacienteComboBox.setEditable(true);
         pacienteComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 pacienteComboBoxItemStateChanged(evt);
@@ -152,7 +153,7 @@ public class medicoGerarAtestado extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        JOptionPane.showMessageDialog(null, String.format("Atestado do paciente %s gerado com sucesso!", pacienteComboBox.getSelectedItem()), "Gerar Atestado",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, String.format("Atestado do paciente %s gerado com sucesso!", pacienteComboBox.getSelectedItem()), "Gerar Atestado", JOptionPane.INFORMATION_MESSAGE);
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -166,8 +167,8 @@ public class medicoGerarAtestado extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente cadastrado.", "Gerar Atestado", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente cadastrado.", "Gerar Atestado", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

@@ -18,10 +18,12 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class medicoAtualizaProntuario extends javax.swing.JFrame {
+
     private Paciente paciente;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.buscaPacienteProntuarios();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoAtualizaProntuario
      */
@@ -31,7 +33,7 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoAtualizaProntuario() {
         initComponents();
     }
@@ -198,23 +200,23 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        Paciente paciente = gerenciador.buscaPaciente(idPaciente);
-        Prontuario novoProntuario = paciente.getProntuario();
-        novoProntuario.setDiagnosticoDoenca(pacienteDiagnosticoText.getText());
-        novoProntuario.setPrescricaoTratamento(pacienteTratamentoText.getText());
-        novoProntuario.setSintomas(pacienteSintomasText.getText());
-        int status = gerenciador.atualizaPaciente();
-        if (status == 1){
-            statusText.setText(String.format("Prontuário do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#17cf17"));
-        }else{
-            statusText.setText("Ocorreu um erro atualizar prontuário!");
-            statusText.setForeground(Color.red);
-        }
-        }catch(Exception e){
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            int idPaciente = results.get(index).getIdPaciente();
+            Paciente paciente = gerenciador.buscaPaciente(idPaciente);
+            Prontuario novoProntuario = paciente.getProntuario();
+            novoProntuario.setDiagnosticoDoenca(pacienteDiagnosticoText.getText());
+            novoProntuario.setPrescricaoTratamento(pacienteTratamentoText.getText());
+            novoProntuario.setSintomas(pacienteSintomasText.getText());
+            int status = gerenciador.atualizaPaciente();
+            if (status == 1) {
+                statusText.setText(String.format("Prontuário do paciente %s atualizado com sucesso!", pacienteComboBox.getSelectedItem()));
+                statusText.setForeground(Color.decode("#17cf17"));
+            } else {
+                statusText.setText("Ocorreu um erro atualizar prontuário!");
+                statusText.setForeground(Color.red);
+            }
+        } catch (Exception e) {
             statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
             statusText.setForeground(Color.red);
         }
@@ -236,8 +238,8 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com prontuário cadastrado.", "Atualizar Prontuário.", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente com prontuário cadastrado.", "Atualizar Prontuário.", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

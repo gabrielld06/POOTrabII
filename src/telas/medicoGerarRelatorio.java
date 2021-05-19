@@ -12,7 +12,9 @@ import javax.swing.JFrame;
  * @author Gabriel
  */
 public class medicoGerarRelatorio extends javax.swing.JFrame {
+
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoGerarRelatorioMedico
      */
@@ -22,7 +24,7 @@ public class medicoGerarRelatorio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoGerarRelatorio() {
         initComponents();
     }

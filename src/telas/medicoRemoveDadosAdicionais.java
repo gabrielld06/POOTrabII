@@ -18,9 +18,11 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.getPacientesDadosAdicionais();
     private JFrame telaAnterior;
+
     /**
      * Creates new form medicoRemoveDadosAdicionais
      */
@@ -30,7 +32,7 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public medicoRemoveDadosAdicionais() {
         initComponents();
     }
@@ -290,37 +292,37 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
     }//GEN-LAST:event_exitButtonActionPerformed
 
     private void pacienteComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_pacienteComboBoxItemStateChanged
-       try {
-        int index = pacienteComboBox.getSelectedIndex();
-       DadosAdicionais dadosAdicionais = results.get(index).getDadosAdicionais();
-       if (dadosAdicionais.getFuma() == true){
-            fumanteSimButton.setSelected(true);
-            fumanteNaoButton.setSelected(false);
-        }else{
-            fumanteNaoButton.setSelected(true);
-            fumanteSimButton.setSelected(false);
+        try {
+            int index = pacienteComboBox.getSelectedIndex();
+            DadosAdicionais dadosAdicionais = results.get(index).getDadosAdicionais();
+            if (dadosAdicionais.getFuma() == true) {
+                fumanteSimButton.setSelected(true);
+                fumanteNaoButton.setSelected(false);
+            } else {
+                fumanteNaoButton.setSelected(true);
+                fumanteSimButton.setSelected(false);
+            }
+            if (dadosAdicionais.getBebe() == true) {
+                alcoolSimButton.setSelected(true);
+                alcoolNaoButton.setSelected(false);
+            } else {
+                alcoolNaoButton.setSelected(true);
+                alcoolSimButton.setSelected(false);
+            }
+            if (dadosAdicionais.getDoençaCardiaca() == true) {
+                doencaCardiacaSimButton.setSelected(true);
+                doencaCardiacaNaoButton.setSelected(false);
+            } else {
+                doencaCardiacaNaoButton.setSelected(true);
+                doencaCardiacaSimButton.setSelected(false);
+            }
+            pacienteColesterolTxt.setText(Double.toString(dadosAdicionais.getColesterol()));
+            pacienteCirurgiaTxt.setText(dadosAdicionais.getCirurgias());
+            pacienteDiabeteTxt.setText(dadosAdicionais.getDiabete());
+            pacienteAlergiaTxt.setText(dadosAdicionais.getAlergias());
+        } catch (Exception e) {
+            System.out.println(e);
         }
-        if (dadosAdicionais.getBebe() == true){
-            alcoolSimButton.setSelected(true);
-            alcoolNaoButton.setSelected(false);
-        }else{
-            alcoolNaoButton.setSelected(true);
-            alcoolSimButton.setSelected(false);
-        }
-        if (dadosAdicionais.getDoençaCardiaca() == true){
-            doencaCardiacaSimButton.setSelected(true);
-            doencaCardiacaNaoButton.setSelected(false);
-        }else{
-            doencaCardiacaNaoButton.setSelected(true);
-            doencaCardiacaSimButton.setSelected(false);
-        }
-        pacienteColesterolTxt.setText(Double.toString(dadosAdicionais.getColesterol()));
-        pacienteCirurgiaTxt.setText(dadosAdicionais.getCirurgias());
-        pacienteDiabeteTxt.setText(dadosAdicionais.getDiabete());
-        pacienteAlergiaTxt.setText(dadosAdicionais.getAlergias());
-       }catch(Exception e){
-           System.out.println(e);
-       }
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 
     private void pacienteComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacienteComboBoxActionPerformed
@@ -328,29 +330,32 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
     }//GEN-LAST:event_pacienteComboBoxActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try{
-        int index = pacienteComboBox.getSelectedIndex();
-        int idPaciente = results.get(index).getIdPaciente();
-        DadosAdicionais dadosAdicionaisRemover = results.get(index).getDadosAdicionais();
-        results.get(index).setDadosAdicionais(null);
-        int status = gerenciador.remove(dadosAdicionaisRemover);
-        if (status == 1){
-            statusText.setText(String.format("Dados adicionais do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
-            statusText.setForeground(Color.decode("#17cf17"));
-            pacienteComboBox.removeItemAt(index);
-            results = gerenciador.getPacientesDadosAdicionais();
-            if (results.size() == 0){
-                JOptionPane.showMessageDialog(null, "Nenhum paciente com dados adicionais cadastrado.", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
-                telaAnterior.setVisible(true);
-                this.dispose();
+        int option = JOptionPane.showConfirmDialog(this, "Deseja mesmo remover os dados adicionais do paciente?", "", JOptionPane.YES_NO_OPTION);
+        if (option == 0) {
+            try {
+                int index = pacienteComboBox.getSelectedIndex();
+                int idPaciente = results.get(index).getIdPaciente();
+                DadosAdicionais dadosAdicionaisRemover = results.get(index).getDadosAdicionais();
+                results.get(index).setDadosAdicionais(null);
+                int status = gerenciador.remove(dadosAdicionaisRemover);
+                if (status == 1) {
+                    statusText.setText(String.format("Dados adicionais do paciente %s removido com sucesso!", pacienteComboBox.getSelectedItem()));
+                    statusText.setForeground(Color.decode("#17cf17"));
+                    pacienteComboBox.removeItemAt(index);
+                    results = gerenciador.getPacientesDadosAdicionais();
+                    if (results.size() == 0) {
+                        JOptionPane.showMessageDialog(this, "Nenhum paciente com dados adicionais cadastrado.", "Remover Dados adicionais", JOptionPane.ERROR_MESSAGE);
+                        telaAnterior.setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    statusText.setText("Erro ao remover paciente!");
+                    statusText.setForeground(Color.decode("#17cf17"));
+                }
+            } catch (Exception e) {
+                statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
+                statusText.setForeground(Color.red);
             }
-        }else{
-            statusText.setText("Erro ao remover paciente!");
-            statusText.setForeground(Color.decode("#17cf17"));
-        }
-        }catch(Exception e){
-            statusText.setText("Ocorreu um erro, verifique os dados inseridos!");
-            statusText.setForeground(Color.red);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -370,8 +375,8 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Não há nenhum paciente com dados adicionais cadastrado.", "Remover Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não há nenhum paciente com dados adicionais cadastrado.", "Remover Dados Adicionais.", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }

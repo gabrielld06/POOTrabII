@@ -21,9 +21,11 @@ import javax.swing.JOptionPane;
  * @author Gabriel
  */
 public class secretariaAtualizaConsulta extends javax.swing.JFrame {
+
     private JFrame telaAnterior;
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
     List<Paciente> results = gerenciador.buscaPacienteConsultas();
+
     /**
      * Creates new form secretariaAtualizaConsulta
      */
@@ -33,7 +35,7 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public secretariaAtualizaConsulta() {
         initComponents();
     }
@@ -221,14 +223,14 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
             results.get(index).getConsulta().setHorario(horarioTextPane.getText());
             results.get(index).getConsulta().setTipo(tipoComboBox.getSelectedItem().toString());
             int status = gerenciador.atualiza();
-            if (status == 1){
+            if (status == 1) {
                 statusText.setText("Consulta atualizada com sucesso!");
                 statusText.setForeground(Color.decode("#17cf17"));
-            }else{
+            } else {
                 statusText.setText("Ocorreu um erro ao atualizar a consulta.");
                 statusText.setForeground(Color.red);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             JOptionPane.showInputDialog("Formato de data incorreto");
         }
     }//GEN-LAST:event_confirmaButtonActionPerformed
@@ -246,8 +248,8 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
-        if (results.size() == 0){
-            JOptionPane.showMessageDialog(null, "Nenhum paciente cadastrado", "Atualizar Consulta", JOptionPane.ERROR_MESSAGE);
+        if (results.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Nenhuma consulta cadastrada", "Atualizar Consulta", JOptionPane.ERROR_MESSAGE);
             telaAnterior.setVisible(true);
             this.dispose();
         }
@@ -263,8 +265,8 @@ public class secretariaAtualizaConsulta extends javax.swing.JFrame {
             tipoComboBox.setSelectedItem(results.get(index).getConsulta().getTipo());
             statusText.setText("Aguardando...");
             statusText.setForeground(Color.white);
-        } catch(Exception e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println("asfsa");
         }
     }//GEN-LAST:event_pacienteComboBoxItemStateChanged
 

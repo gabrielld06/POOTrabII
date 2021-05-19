@@ -21,9 +21,11 @@ import javax.swing.JPanel;
  * @author Gabriel
  */
 public class secretariaCadastraConsulta extends javax.swing.JFrame {
+
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientes();
+    List<Paciente> results = gerenciador.getPacientesSemConsulta();
     private JFrame telaAnterior;
+
     /**
      * Creates new form secretariaCadastraConsulta
      */
@@ -33,7 +35,7 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
-    
+
     public secretariaCadastraConsulta() {
         initComponents();
     }
@@ -165,37 +167,50 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
         Consulta novaConsulta = new Consulta();
         try {
             LocalDate data = dataTextPane.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            novaConsulta.setMedico(medicoTextPane.getText());
-            novaConsulta.setData(data);
-            novaConsulta.setHorario(horarioTextPane.getText());
-            novaConsulta.setTipo(tipoComboBox.getSelectedItem().toString());
-            int index = pacienteComboBox.getSelectedIndex();
-            results.get(index).setConsulta(novaConsulta);
-            novaConsulta.setPaciente(results.get(index));
-            int status = gerenciador.inserir(novaConsulta);
-            if (status == 1){
-                statusText.setText("Consulta cadastrada com sucesso!");
-                statusText.setForeground(Color.decode("#17cf17"));
-            }else{
-                statusText.setText("Ocorreu um erro ao atualizar a consulta.");
-                statusText.setForeground(Color.red);
-            }
-            if(novaConsulta.getData().toString().equals(LocalDate.now().plusDays(1).toString())) {
-                String txt = "";
-                if(results.get(index).getEmail().equals("") && !results.get(index).getTelefone().equals("")) {
-                    txt += "SMS enviado para ";
-                } else if(!results.get(index).getEmail().equals("") && results.get(index).getTelefone().equals("")){
-                    txt += "Email enviado para ";
-                } else if(!results.get(index).getEmail().equals("") && !results.get(index).getTelefone().equals("")) {
-                    txt += "SMS e email enviado para ";
+            if (data.isAfter(LocalDate.now())) {
+                novaConsulta.setMedico(medicoTextPane.getText());
+                novaConsulta.setData(data);
+                novaConsulta.setHorario(horarioTextPane.getText());
+                novaConsulta.setTipo(tipoComboBox.getSelectedItem().toString());
+                int index = pacienteComboBox.getSelectedIndex();
+                int idPaciente = results.get(index).getIdPaciente();
+                Paciente paciente = results.get(index);
+                paciente.setConsulta(novaConsulta);
+                novaConsulta.setPaciente(paciente);
+                int status = gerenciador.inserir(novaConsulta);
+                if (status == 1) {
+                    statusText.setText("Consulta cadastrada com sucesso!");
+                    statusText.setForeground(Color.decode("#17cf17"));
+                    if (novaConsulta.getData().toString().equals(LocalDate.now().plusDays(1).toString())) {
+                        String txt = "";
+                        if (paciente.getEmail().equals("") && !paciente.getTelefone().equals("")) {
+                            txt += "SMS enviado para ";
+                        } else if (!paciente.getEmail().equals("") && paciente.getTelefone().equals("")) {
+                            txt += "Email enviado para ";
+                        } else if (!paciente.getEmail().equals("") && !paciente.getTelefone().equals("")) {
+                            txt += "SMS e email enviado para ";
+                        } else {
+                            txt += "Nenhuma forma de contato registrada para ";
+                        }
+                        txt += paciente.getNome();
+                        JOptionPane.showMessageDialog(this, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    pacienteComboBox.removeItemAt(index);
+                    results = gerenciador.getPacientesSemConsulta();
+                    if (results.isEmpty()) {
+                        JOptionPane.showMessageDialog(this, "Nenhum paciente sem consulta cadastrado.", "Cadastrar Consulta", JOptionPane.ERROR_MESSAGE);
+                        telaAnterior.setVisible(true);
+                        this.dispose();
+                    }
                 } else {
-                    txt += "Nenhuma forma de contato registrada para ";
+                    statusText.setText("Ocorreu um erro ao atualizar a consulta.");
+                    statusText.setForeground(Color.red);
                 }
-                txt += results.get(index).getNome();
-                JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                throw new Exception("Data inválida");
             }
-        } catch(Exception e) {
-            JOptionPane.showInputDialog("Formato de data incorreto");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Data inválida", "", JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_confirmaButtonActionPerformed
 
@@ -208,6 +223,11 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
         results.forEach(e -> {
             pacienteComboBox.addItem(e.getNome());
         });
+        if (results.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Nenhum paciente cadastrado", "Cadastrar Consulta", JOptionPane.ERROR_MESSAGE);
+            telaAnterior.setVisible(true);
+            this.dispose();
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**
