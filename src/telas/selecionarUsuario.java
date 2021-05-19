@@ -33,7 +33,6 @@ public class selecionarUsuario extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
-  
     }
 
     /**
@@ -147,7 +146,25 @@ public class selecionarUsuario extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-        gerenciador.gerenciadorMsg();
+        String txt = "";
+        List<Consulta> results = gerenciador.buscaConsultasAmanha("");
+        Paciente p = new Paciente();
+        for (int i = 0; i < results.size(); i++) {
+            p = results.get(i).getPaciente();
+            if (p.getEmail().equals("") && !p.getTelefone().equals("")) {
+                txt += "SMS enviado para ";
+            } else if (!p.getEmail().equals("") && p.getTelefone().equals("")) {
+                txt += "Email enviado para ";
+            } else if (!p.getEmail().equals("") && !p.getTelefone().equals("")) {
+                txt += "SMS e email enviado para ";
+            } else {
+                txt += "Nenhuma forma de contato registrada para ";
+            }
+            txt += p.getNome() + "\n";
+        }
+        if (results.size() > 0) {
+            JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     /**

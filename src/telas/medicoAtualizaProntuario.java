@@ -7,7 +7,6 @@ package telas;
 
 import POJO.Paciente;
 import POJO.Prontuario;
-import POJO.Prontuario_;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
@@ -30,6 +29,7 @@ public class medicoAtualizaProntuario extends javax.swing.JFrame {
         initComponents();
         telaAnterior = tela;
         setLocationRelativeTo(null);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
     
     public medicoAtualizaProntuario() {

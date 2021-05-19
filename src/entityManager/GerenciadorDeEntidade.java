@@ -113,26 +113,6 @@ public class GerenciadorDeEntidade<Entity> {
         }
     }
 
-    public void gerenciadorMsg() {
-        String txt = "";
-        List<Consulta> results = buscaConsultasAmanha("");
-        Paciente p = new Paciente();
-        for (int i = 0; i < results.size(); i++) {
-            p = results.get(i).getPaciente();
-            if (p.getEmail().equals("") && !p.getTelefone().equals("")) {
-                txt += "SMS enviado para ";
-            } else if (!p.getEmail().equals("") && p.getTelefone().equals("")) {
-                txt += "Email enviado para ";
-            } else if (!p.getEmail().equals("") && !p.getTelefone().equals("")) {
-                txt += "SMS e email enviado para ";
-            } else {
-                txt += "Nenhuma forma de contato registrada para ";
-            }
-            txt += p.getNome() + "\n";
-        }
-        JOptionPane.showMessageDialog(null, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     public List<Paciente> getPacientesDadosAdicionais() {
         return em.createQuery("SELECT a FROM Paciente a WHERE a.dadosAdicionais IS NOT NULL", Paciente.class).getResultList();
     }

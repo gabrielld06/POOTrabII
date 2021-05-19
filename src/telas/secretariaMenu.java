@@ -21,6 +21,7 @@ public class secretariaMenu extends javax.swing.JFrame {
         initComponents();
         telaAnterior = tela;
         setLocationRelativeTo(null);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
 
     private secretariaMenu() {
@@ -47,13 +48,12 @@ public class secretariaMenu extends javax.swing.JFrame {
         gerarRelatorioConsultaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(446, 266));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         menuText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menuText.setText("Menu secretaria");
         menuText.setPreferredSize(new java.awt.Dimension(125, 25));
-        getContentPane().add(menuText, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
 
         exitButton.setText("Sair");
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -61,7 +61,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 exitButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(exitButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, -1, -1));
 
         cadastrarPacienteButton.setText("Cadastrar Paciente");
         cadastrarPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -76,7 +75,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 cadastrarPacienteButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastrarPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
 
         atualizaPacienteButton.setText("Atualizar Paciente");
         atualizaPacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -86,7 +84,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 atualizaPacienteButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(atualizaPacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, -1));
 
         removePacienteButton.setText("Remover Paciente");
         removePacienteButton.setMaximumSize(new java.awt.Dimension(130, 22));
@@ -96,7 +93,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 removePacienteButtonMouseClicked(evt);
             }
         });
-        getContentPane().add(removePacienteButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 160, -1, -1));
 
         cadastrarConsultaButton.setText("Cadastrar Consulta");
         cadastrarConsultaButton.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +100,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 cadastrarConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastrarConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 80, -1, -1));
 
         atualizaConsultaButton.setText("Atualizar Consulta");
         atualizaConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
@@ -113,7 +108,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 atualizaConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(atualizaConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, -1, -1));
 
         removeConsultaButton.setText("Remover Consulta");
         removeConsultaButton.setPreferredSize(new java.awt.Dimension(130, 22));
@@ -122,7 +116,6 @@ public class secretariaMenu extends javax.swing.JFrame {
                 removeConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(removeConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 160, -1, -1));
 
         gerarRelatorioConsultaButton.setText("Gerar Relatório de Consulta");
         gerarRelatorioConsultaButton.setMaximumSize(new java.awt.Dimension(170, 22));
@@ -132,7 +125,61 @@ public class secretariaMenu extends javax.swing.JFrame {
                 gerarRelatorioConsultaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(gerarRelatorioConsultaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 200, -1, -1));
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(140, 140, 140)
+                        .addComponent(menuText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(cadastrarPacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(cadastrarConsultaButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(atualizaPacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(atualizaConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(removePacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20)
+                        .addComponent(removeConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(gerarRelatorioConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(exitButton)))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(menuText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cadastrarPacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cadastrarConsultaButton))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(atualizaPacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atualizaConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removePacienteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(removeConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(gerarRelatorioConsultaButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exitButton))
+                .addContainerGap(53, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

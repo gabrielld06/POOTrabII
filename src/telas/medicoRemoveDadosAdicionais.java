@@ -28,6 +28,7 @@ public class medicoRemoveDadosAdicionais extends javax.swing.JFrame {
         initComponents();
         telaAnterior = tela;
         setLocationRelativeTo(null);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
     
     public medicoRemoveDadosAdicionais() {
