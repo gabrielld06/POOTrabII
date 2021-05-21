@@ -10,6 +10,7 @@ import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -32,6 +33,7 @@ public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
         gerenciador = g;
         results = gerenciador.getPacientesDadosAdicionais();
         setLocationRelativeTo(null);
+        pacienteColesterolTxt.setLocale(Locale.ENGLISH);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
 

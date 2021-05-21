@@ -153,6 +153,9 @@ public class selecionarUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_loginButtonActionPerformed
 
+    // O gerenciador de mensagens funciona automaticamente, ao iniciar o programa 
+    // é feita a busaca das consultas do dia seguinte e é enviado uma mensagem
+    // para os paciente dependendo de sua forma de contato.
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         String txt = "";
         List<Consulta> results = gerenciador.buscaConsultasAmanha("");

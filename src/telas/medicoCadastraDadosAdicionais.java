@@ -9,7 +9,9 @@ import POJO.DadosAdicionais;
 import POJO.Paciente;
 import entityManager.GerenciadorDeEntidade;
 import java.awt.Color;
+import java.text.NumberFormat;
 import java.util.List;
+import java.util.Locale;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -303,7 +305,7 @@ public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
             novoDadosAdicionais.setFuma(fuma);
             novoDadosAdicionais.setBebe(bebe);
             novoDadosAdicionais.setDoençaCardiaca(doencaCardiaca);
-            novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getText());
+            novoDadosAdicionais.setColesterol(pacienteColesterolTxt.getValue().toString());
             novoDadosAdicionais.setDiabete(pacienteDiabeteTxt.getText());
             novoDadosAdicionais.setCirurgias(pacienteCirurgiaTxt.getText());
             novoDadosAdicionais.setAlergias(pacienteAlergiaTxt.getText());

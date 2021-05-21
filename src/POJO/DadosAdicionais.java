@@ -9,7 +9,8 @@ import javax.persistence.OneToOne;
 @Entity
 
 public class DadosAdicionais {
-    @Id 
+
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int IdDadosAdicionais;
     private boolean fuma;
@@ -21,8 +22,8 @@ public class DadosAdicionais {
     private String alergias;
     @OneToOne
     private Paciente paciente;
-    
-    public boolean getFuma(){
+
+    public boolean getFuma() {
         return fuma;
     }
 
@@ -33,72 +34,72 @@ public class DadosAdicionais {
     public void setIdDadosAdicionais(int IdDadosAdicionais) {
         this.IdDadosAdicionais = IdDadosAdicionais;
     }
-    
-    public void setFuma(String fuma){
-        if (fuma.equals("sim")){
+
+    public void setFuma(String fuma) {
+        if (fuma.equals("sim")) {
             this.fuma = true;
-        }else if (fuma.equals("não")){
+        } else if (fuma.equals("não")) {
             this.fuma = false;
         }
     }
-       
-    public boolean getBebe(){
+
+    public boolean getBebe() {
         return bebe;
     }
-    
-    public void setBebe(String bebe){
-        if (bebe.equals("sim")){
+
+    public void setBebe(String bebe) {
+        if (bebe.equals("sim")) {
             this.bebe = true;
-        }else if (bebe.equals("não")){
+        } else if (bebe.equals("não")) {
             this.bebe = false;
         }
     }
-    
-    public double getColesterol(){
+
+    public double getColesterol() {
         return colesterol;
     }
-    
-    public void setColesterol(String colesterol){
+
+    public void setColesterol(String colesterol) {
         try {
-        this.colesterol = Double.parseDouble(colesterol);
-        }catch(Exception e) {
-           System.out.println("\nValor do colesterol: Digite apenas números positivos, valor de colesterol não foi alterado.");
+            this.colesterol = Double.parseDouble(colesterol);
+        } catch (Exception e) {
+            System.out.println("\nValor do colesterol: Digite apenas números positivos, valor de colesterol não foi alterado.");
         }
     }
-    
-    public String getDiabete(){
+
+    public String getDiabete() {
         return diabete;
     }
-    
-    public void setDiabete(String diabete){
+
+    public void setDiabete(String diabete) {
         this.diabete = diabete;
     }
-    
-    public boolean getDoençaCardiaca(){
+
+    public boolean getDoençaCardiaca() {
         return doençaCardiaca;
     }
-    
-    public void setDoençaCardiaca(String doençaCardiaca){
-        if (doençaCardiaca.equals("sim")){
+
+    public void setDoençaCardiaca(String doençaCardiaca) {
+        if (doençaCardiaca.equals("sim")) {
             this.doençaCardiaca = true;
-        }else if (doençaCardiaca.equals("não")){
+        } else if (doençaCardiaca.equals("não")) {
             this.doençaCardiaca = false;
         }
     }
-    
-    public String getCirurgias(){
+
+    public String getCirurgias() {
         return cirurgias;
     }
-    
-    public void setCirurgias(String cirurgias){
+
+    public void setCirurgias(String cirurgias) {
         this.cirurgias = cirurgias;
     }
-    
-    public String getAlergias(){
+
+    public String getAlergias() {
         return alergias;
     }
-    
-    public void setAlergias(String alergias){
+
+    public void setAlergias(String alergias) {
         this.alergias = alergias;
     }
 
@@ -109,5 +110,5 @@ public class DadosAdicionais {
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
     }
-    
+
 }
