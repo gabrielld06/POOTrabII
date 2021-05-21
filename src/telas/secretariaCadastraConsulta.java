@@ -22,16 +22,15 @@ import javax.swing.JPanel;
  */
 public class secretariaCadastraConsulta extends javax.swing.JFrame {
 
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientesSemConsulta();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
+    private List<Paciente> results;
 
-    /**
-     * Creates new form secretariaCadastraConsulta
-     */
-    public secretariaCadastraConsulta(JFrame tela) {
+    public secretariaCadastraConsulta(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.getPacientesSemConsulta();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
@@ -158,7 +157,6 @@ public class secretariaCadastraConsulta extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        // TODO add your handling code here:
         telaAnterior.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed

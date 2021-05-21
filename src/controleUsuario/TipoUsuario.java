@@ -1,6 +1,6 @@
 package controleUsuario;
 
-import trabalho.Dados;
+import javax.swing.JFrame;
 
 public class TipoUsuario {
 
@@ -14,7 +14,11 @@ public class TipoUsuario {
 
     }
 
-    public void menu(Dados dados) {
-        usuario.menu(dados);
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+        
+    public void menu(JFrame telaAnterior) {
+        usuario.menu(telaAnterior);
     }
 }

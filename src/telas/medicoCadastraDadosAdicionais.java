@@ -19,17 +19,18 @@ import javax.swing.JOptionPane;
  */
 public class medicoCadastraDadosAdicionais extends javax.swing.JFrame {
 
-    private Paciente paciente;
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.buscaPacienteSemDadosAdicionais();
-    JFrame telaAnterior;
+    private GerenciadorDeEntidade gerenciador;
+    private List<Paciente> results;
+    private JFrame telaAnterior;
 
     /**
      * Creates new form medicoCadastraDadosAdicionais
      */
-    public medicoCadastraDadosAdicionais(JFrame tela) {
+    public medicoCadastraDadosAdicionais(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.buscaPacienteSemDadosAdicionais();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

@@ -5,6 +5,7 @@
  */
 package telas;
 
+import controleUsuario.Secretaria;
 import javax.swing.JFrame;
 
 /**
@@ -14,19 +15,22 @@ import javax.swing.JFrame;
 public class secretariaMenu extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
+    Secretaria secretaria = new Secretaria();
 
     /**
      * Creates new form secretariaMenu
      */
-    public secretariaMenu(JFrame tela) {
-        initComponents();
-        telaAnterior = tela;
-        setLocationRelativeTo(null);
-        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
-    }
-
+    
     private secretariaMenu() {
         initComponents();
+    }
+
+    public secretariaMenu(JFrame tela, Secretaria s) {
+        initComponents();
+        telaAnterior = tela;
+        secretaria = s;
+        setLocationRelativeTo(null);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
 
     /**
@@ -49,7 +53,6 @@ public class secretariaMenu extends javax.swing.JFrame {
         gerarRelatorioConsultaButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(446, 266));
         setResizable(false);
 
         menuText.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -194,50 +197,43 @@ public class secretariaMenu extends javax.swing.JFrame {
     private void cadastrarPacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastrarPacienteButtonMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaCadastraPaciente telaCadastro = new secretariaCadastraPaciente(this);
-        telaCadastro.setVisible(true);
+        secretaria.cadastraPaciente(this);
     }//GEN-LAST:event_cadastrarPacienteButtonMouseClicked
 
     private void removePacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removePacienteButtonMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaRemovePaciente telaRemove = new secretariaRemovePaciente(this);
-        telaRemove.setVisible(true);
+        secretaria.removePaciente(this);
     }//GEN-LAST:event_removePacienteButtonMouseClicked
 
     private void atualizaPacienteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizaPacienteButtonMouseClicked
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaAtualizaPaciente telaAtualiza = new secretariaAtualizaPaciente(this);
-        telaAtualiza.setVisible(true);
+        secretaria.atualizaPaciente(this);
     }//GEN-LAST:event_atualizaPacienteButtonMouseClicked
 
     private void cadastrarConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarConsultaButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaCadastraConsulta tela = new secretariaCadastraConsulta(this);
-        tela.setVisible(true);
+        secretaria.cadastraConsulta(this);
     }//GEN-LAST:event_cadastrarConsultaButtonActionPerformed
 
     private void atualizaConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizaConsultaButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaAtualizaConsulta tela = new secretariaAtualizaConsulta(this);
-        tela.setVisible(true);
+        secretaria.atualizaConsulta(this);
     }//GEN-LAST:event_atualizaConsultaButtonActionPerformed
 
     private void removeConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeConsultaButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaRemoveConsulta tela = new secretariaRemoveConsulta(this);
-        tela.setVisible(true);
+        secretaria.removeConsulta(this);
     }//GEN-LAST:event_removeConsultaButtonActionPerformed
 
     private void gerarRelatorioConsultaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarRelatorioConsultaButtonActionPerformed
         // TODO add your handling code here:
         this.setVisible(false);
-        secretariaGerarRelatorioConsulta tela = new secretariaGerarRelatorioConsulta(this);
-        tela.setVisible(true);
+        secretaria.gerarRelatorio(this);
     }//GEN-LAST:event_gerarRelatorioConsultaButtonActionPerformed
 
     private void cadastrarPacienteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarPacienteButtonActionPerformed

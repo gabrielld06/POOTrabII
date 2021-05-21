@@ -19,16 +19,18 @@ import javax.swing.table.DefaultTableModel;
  */
 public class medicoGerarClientesAtendidos extends javax.swing.JFrame {
 
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Consulta> results = gerenciador.buscaConsultasMes();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
+    private List<Consulta> results;
 
     /**
      * Creates new form medicoGerarClientesAtendidos
      */
-    public medicoGerarClientesAtendidos(JFrame tela) {
+    public medicoGerarClientesAtendidos(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.buscaConsultasMes();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

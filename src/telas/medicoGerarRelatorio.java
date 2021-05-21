@@ -5,6 +5,7 @@
  */
 package telas;
 
+import entityManager.GerenciadorDeEntidade;
 import javax.swing.JFrame;
 
 /**
@@ -14,13 +15,15 @@ import javax.swing.JFrame;
 public class medicoGerarRelatorio extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
+    private GerenciadorDeEntidade gerenciador;
 
     /**
      * Creates new form medicoGerarRelatorioMedico
      */
-    public medicoGerarRelatorio(JFrame tela) {
+    public medicoGerarRelatorio(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }
@@ -107,25 +110,25 @@ public class medicoGerarRelatorio extends javax.swing.JFrame {
 
     private void gerarReceitaBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarReceitaBtnActionPerformed
         this.setVisible(false);
-        medicoGerarReceita telaAtualiza = new medicoGerarReceita(this);
+        medicoGerarReceita telaAtualiza = new medicoGerarReceita(this, gerenciador);
         telaAtualiza.setVisible(true);
     }//GEN-LAST:event_gerarReceitaBtnActionPerformed
 
     private void gerarAtestadoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarAtestadoBtnActionPerformed
         this.setVisible(false);
-        medicoGerarAtestado telaAtualiza = new medicoGerarAtestado(this);
+        medicoGerarAtestado telaAtualiza = new medicoGerarAtestado(this, gerenciador);
         telaAtualiza.setVisible(true);
     }//GEN-LAST:event_gerarAtestadoBtnActionPerformed
 
     private void GerarAcompanhamentoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GerarAcompanhamentoBtnActionPerformed
         this.setVisible(false);
-        medicoDeclaracaoAcompanhamento telaAtualiza = new medicoDeclaracaoAcompanhamento(this);
+        medicoDeclaracaoAcompanhamento telaAtualiza = new medicoDeclaracaoAcompanhamento(this, gerenciador);
         telaAtualiza.setVisible(true);
     }//GEN-LAST:event_GerarAcompanhamentoBtnActionPerformed
 
     private void gerarClientesMesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarClientesMesBtnActionPerformed
         this.setVisible(false);
-        medicoGerarClientesAtendidos telaAtualiza = new medicoGerarClientesAtendidos(this);
+        medicoGerarClientesAtendidos telaAtualiza = new medicoGerarClientesAtendidos(this, gerenciador);
         telaAtualiza.setVisible(true);
     }//GEN-LAST:event_gerarClientesMesBtnActionPerformed
 

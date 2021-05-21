@@ -18,14 +18,15 @@ import javax.swing.JOptionPane;
 public class secretariaGerarRelatorioConsulta extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    private GerenciadorDeEntidade gerenciador;
 
     /**
      * Creates new form secretariaGerarRelatorioConsulta
      */
-    public secretariaGerarRelatorioConsulta(JFrame tela) {
+    public secretariaGerarRelatorioConsulta(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

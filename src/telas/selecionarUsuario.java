@@ -9,13 +9,14 @@ import POJO.Consulta;
 import POJO.Paciente;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import controleUsuario.Medico;
+import controleUsuario.Secretaria;
 import entityManager.GerenciadorDeEntidade;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import controleUsuario.TipoUsuario;
+import controleUsuario.Medico;
+import controleUsuario.Secretaria;
 import trabalho.Trabalho;
 
 /**
@@ -25,10 +26,7 @@ import trabalho.Trabalho;
 public class selecionarUsuario extends javax.swing.JFrame {
 
     private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-
-    /**
-     * Creates new form main
-     */
+    private TipoUsuario usuario = new TipoUsuario();
 
     public selecionarUsuario() {
         initComponents();
@@ -141,16 +139,14 @@ public class selecionarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        System.out.println(jComboBox1.getSelectedItem().toString());
+        this.setVisible(false);
+
         if (jComboBox1.getSelectedItem().toString() == "Secretária") {
-            secretariaMenu menu = new secretariaMenu(this);
-            menu.setVisible(true);
-            this.setVisible(false);
+            usuario.setUsuario(new Secretaria(gerenciador));
         } else {
-            medicoMenu menu = new medicoMenu(this);
-            menu.setVisible(true);
-            this.setVisible(false);
+            usuario.setUsuario(new Medico(gerenciador));
         }
+        usuario.menu(this);
     }//GEN-LAST:event_loginButtonMouseClicked
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
@@ -158,7 +154,6 @@ public class selecionarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_loginButtonActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        // TODO add your handling code here:
         String txt = "";
         List<Consulta> results = gerenciador.buscaConsultasAmanha("");
         Paciente p = new Paciente();
@@ -177,6 +172,8 @@ public class selecionarUsuario extends javax.swing.JFrame {
         }
         if (results.size() > 0) {
             JOptionPane.showMessageDialog(this, txt, "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "Nenhuma consulta marcada pra amanhã", "Gerenciador de mensagens", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_formWindowOpened
 

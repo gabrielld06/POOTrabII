@@ -19,16 +19,16 @@ import javax.swing.JOptionPane;
  */
 public class secretariaCadastraPaciente extends javax.swing.JFrame {
 
-    private Paciente paciente;
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
 
     /**
      * Creates new form secretariaCadastraPaciente
      */
-    public secretariaCadastraPaciente(JFrame tela) {
+    public secretariaCadastraPaciente(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

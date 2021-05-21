@@ -20,17 +20,18 @@ import javax.swing.JOptionPane;
  */
 public class medicoCadastraProntuario extends javax.swing.JFrame {
 
-    private Paciente paciente;
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.buscaPacienteSemProntuarios();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
+    private List<Paciente> results;
 
     /**
      * Creates new form medicoCadastraProntuario
      */
-    public medicoCadastraProntuario(JFrame tela) {
+    public medicoCadastraProntuario(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.buscaPacienteSemProntuarios();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

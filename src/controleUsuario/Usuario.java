@@ -1,6 +1,6 @@
 package controleUsuario;
 
-import trabalho.Dados;
+import javax.swing.JFrame;
 
 public class Usuario {
 
@@ -8,39 +8,39 @@ public class Usuario {
 
     }
 
-    public void menu(Dados dados) {
+    public void menu(JFrame telaAnterior) {
 
     }
 
-    public void cadastraPaciente(Dados dados) {
+    public void cadastraPaciente(JFrame telaAnterior) {
 
     }
 
-    public void atualizaPaciente(Dados dados) {
+    public void atualizaPaciente(JFrame telaAnterior) {
 
     }
 
-    public void removePaciente(Dados dados) {
+    public void removePaciente(JFrame telaAnterior) {
 
     }
 
-    public void cadastraConsulta(Dados dados) {
+    public void cadastraConsulta(JFrame telaAnterior) {
 
     }
 
-    public void atualizaConsulta(Dados dados) {
+    public void atualizaConsulta(JFrame telaAnterior) {
 
     }
 
-    public void removeConsulta(Dados dados) {
+    public void removeConsulta(JFrame telaAnterior) {
 
     }
 
-    public void gerarRelatorio(Dados dados) {
+    public void gerarRelatorio(JFrame telaAnterior) {
 
     }
 
-    public void enviarMensagens(Dados dados) {
+    public void enviarMensagens(JFrame telaAnterior) {
 
     }
 

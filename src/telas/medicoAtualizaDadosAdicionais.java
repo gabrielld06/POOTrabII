@@ -19,16 +19,18 @@ import javax.swing.JOptionPane;
  */
 public class medicoAtualizaDadosAdicionais extends javax.swing.JFrame {
 
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientesDadosAdicionais();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
-
+    private List<Paciente> results;
+    
     /**
      * Creates new form medicoAtualizaDadosAdicionais
      */
-    public medicoAtualizaDadosAdicionais(JFrame tela) {
+    public medicoAtualizaDadosAdicionais(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.getPacientesDadosAdicionais();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

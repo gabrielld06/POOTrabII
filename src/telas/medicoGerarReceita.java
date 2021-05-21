@@ -18,16 +18,17 @@ import javax.swing.JOptionPane;
  */
 public class medicoGerarReceita extends javax.swing.JFrame {
 
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.getPacientes();
+    private GerenciadorDeEntidade gerenciador;
     private JFrame telaAnterior;
-
+    private List<Paciente> results;
     /**
      * Creates new form medicoGerarReceita
      */
-    public medicoGerarReceita(JFrame tela) {
+    public medicoGerarReceita(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.getPacientes();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

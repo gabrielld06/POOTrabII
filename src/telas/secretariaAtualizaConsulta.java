@@ -23,15 +23,17 @@ import javax.swing.JOptionPane;
 public class secretariaAtualizaConsulta extends javax.swing.JFrame {
 
     private JFrame telaAnterior;
-    private GerenciadorDeEntidade gerenciador = new GerenciadorDeEntidade();
-    List<Paciente> results = gerenciador.buscaPacienteConsultas();
+    private GerenciadorDeEntidade gerenciador;
+    private List<Paciente> results;
 
     /**
      * Creates new form secretariaAtualizaConsulta
      */
-    public secretariaAtualizaConsulta(JFrame tela) {
+    public secretariaAtualizaConsulta(JFrame tela, GerenciadorDeEntidade g) {
         initComponents();
         telaAnterior = tela;
+        gerenciador = g;
+        results = gerenciador.buscaPacienteConsultas();
         setLocationRelativeTo(null);
         setIconImage(new javax.swing.ImageIcon(getClass().getResource("/images/supimpa.png")).getImage());
     }

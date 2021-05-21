@@ -17,7 +17,6 @@ public class Trabalho {
         }
         selecionarUsuario tela = new selecionarUsuario();
         tela.setVisible(true);
-        //tela.gerenciador();
     }
 
 }

@@ -20,6 +20,7 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author Gabriel
+ * @param <Entity>
  */
 public class GerenciadorDeEntidade<Entity> {
 
@@ -28,7 +29,6 @@ public class GerenciadorDeEntidade<Entity> {
     EntityManagerFactory emf = Persistence.createEntityManagerFactory("trabalhoPU");
     EntityManager em = emf.createEntityManager();
 
-    // se der merda colocar o return
     public int inserir(Entity entity) {
         try {
             em.getTransaction().begin();
@@ -84,6 +84,7 @@ public class GerenciadorDeEntidade<Entity> {
     }
 
     public List<Paciente> buscaPacienteProntuarios() {
+
         return em.createQuery("SELECT a FROM Paciente a WHERE a.prontuario IS NOT NULL", Paciente.class).getResultList();
     }
 
@@ -131,39 +132,4 @@ public class GerenciadorDeEntidade<Entity> {
                 + LocalDate.now().withDayOfMonth(1).toString()
                 + "'}", Consulta.class).getResultList();
     }
-    /*
-        // Inserindo uma pessoa
-        Pessoa u = new Pessoa();
-        u.setNome("Joao");
-        u.setEndereco("R. Brasil");
-        em.getTransaction().begin();
-        em.persist(u);
-        em.getTransaction().commit();
-        
-        // Atualizando os dados de uma pessoa
-        Pessoa a = new Pessoa();
-        em.getTransaction().begin();
-        a = em.find(a.getClass(), new Integer(1));
-        if (a != null){
-            a.setEndereco("Av. Colombo");
-        }
-        em.getTransaction().commit();
-        
-        // Recuperando os dados de uma pessoa
-        Pessoa r = new Pessoa();
-        em.getTransaction().begin();
-        r = em.find(r.getClass(), new Integer(1));
-        em.getTransaction().commit();
-        System.out.println("Nome: " + r.getNome() + " Endereco: " + r.getEndereco());
-        
-        // Removendo uma pessoa da tabela no banco de dados
-        em.getTransaction().begin();
-        r = em.find(r.getClass(), new Integer(1));
-        if (r != null)
-            em.remove(r);
-        em.getTransaction().commit();
-        
-        // Finalizando o gerenciador de entidades e a fabrica
-        em.close();
-        emf.close();*/
 }
